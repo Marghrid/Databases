@@ -1,0 +1,1 @@
+/* schema.sql: Ficheiro de criação do esquema da base de dados. */

@@ -1,0 +1,1 @@
+/* queries.sql: Ficheiro com as consultas SQL. */

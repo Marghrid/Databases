@@ -1,0 +1,1 @@
+/* populate.sql: Ficheiro com instruções para popular as tabelas com dados de teste.  */
