@@ -16,7 +16,7 @@
         $sql = "INSERT INTO categoria VALUES ('$nome_cat');";
         echo("$nome_cat");
         echo("<p>$sql</p>");
-        echo("<p><a href=\"categorias.php\">Ver supermercado</a></p>");
+        echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
 
         $db->query($sql);
 
