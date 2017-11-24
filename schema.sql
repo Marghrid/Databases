@@ -41,3 +41,10 @@ CREATE TABLE produto(
 	FOREIGN KEY (categoria)     REFERENCES categoria(nome),
 	FOREIGN KEY (forn_primario) REFERENCES fornecedor(nif)
 );
+
+CREATE TABLE fornece_sec(
+	nif	NUMERIC(9),
+	ean NUMERIC(13),
+	PRIMARY KEY (nif, ean),
+	FOREIGN 
+);
