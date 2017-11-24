@@ -1,5 +1,9 @@
 /* schema.sql: Ficheiro de criação do esquema da base de dados. */
 /* schema.sql: Ficheiro de criação do esquema da base de dados. */
+
+CREATE TYPE tipo_lado	AS ENUM ('direito', 'esquerdo');
+CREATE TYPE tipo_altura AS ENUM ('chao', 'medio', 'superior');
+
 CREATE TABLE categoria(
 	nome VARCHAR(200) NOT NULL,
 	PRIMARY KEY (nome)
@@ -58,8 +62,8 @@ CREATE TABLE corredor(
 
 CREATE TABLE prateleira(
 	nro    SMALLINT 	NOT NULL,
-	lado   VARCHAR(8)	NOT NULL,  -- "esquerdo" ou "direito"
-	altura VARCHAR(8) 	NOT NULL,  -- "chão", "médio" ou "superior"
+	lado   tipo_lado	NOT NULL,  -- "esquerdo" ou "direito"
+	altura tipo_altura 	NOT NULL,  -- "chão", "médio" ou "superior"
 	PRIMARY KEY (nro, lado, altura),
 	FOREIGN KEY (nro) REFERENCES corredor
 );
@@ -67,32 +71,32 @@ CREATE TABLE prateleira(
 CREATE TABLE planograma(
 	ean      NUMERIC(13)	NOT NULL,
 	nro      SMALLINT  		NOT NULL,
-	lado     VARCHAR(8)		NOT NULL,
-	altura   VARCHAR(8) 	NOT NULL,
+	lado     tipo_lado		NOT NULL,
+	altura   tipo_altura 	NOT NULL,
 	face     SMALLINT		NOT NULL, -- número de frentes de produto visíveis
 	unidades INT			NOT NULL,
 	loc      INT   	        NOT NULL, -- número de slot. O supermercado tem menos de 2147483647 slots.
 	PRIMARY KEY (ean, nro, lado, altura),
+	FOREIGN KEY (ean) 				REFERENCES produto(ean),
 	FOREIGN KEY	(nro, lado, altura)	REFERENCES prateleira(nro, lado, altura)
 );
 
 CREATE TABLE evento_reposicao(
 	operador	NUMERIC(9)	NOT NULL UNIQUE, -- nif do empregado
-	instante	TIMESTAMP	NOT NULL,
-	PRIMARY KEY (instante)
-	--UNIQUE (operador, instante)
+	instante	TIMESTAMP	NOT NULL UNIQUE,
+	PRIMARY KEY (instante),
+	UNIQUE (operador, instante)
 );
 
 CREATE TABLE reposicao(
 	ean 		NUMERIC(13)	NOT NULL,
 	nro 		SMALLINT	NOT NULL,
-	lado		VARCHAR(8)	NOT NULL,
-	altura 		VARCHAR(8)  NOT NULL,
+	lado		tipo_lado	NOT NULL,
+	altura 		tipo_altura NOT NULL,
 	operador 	NUMERIC(9)	NOT NULL,
 	instante 	TIMESTAMP	NOT NULL,
 	unidades 	INT 		NOT NULL,
 	PRIMARY KEY (ean, nro, lado, altura, operador, instante),
 	FOREIGN KEY (ean, nro, lado, altura)	REFERENCES	planograma(ean, nro, lado, altura),
-	FOREIGN KEY (operador)		REFERENCES  evento_reposicao(operador),
-	FOREIGN KEY (instante)		REFERENCES  evento_reposicao(instante)
+	FOREIGN KEY (operador, instante)		REFERENCES  evento_reposicao(operador, instante)
 );

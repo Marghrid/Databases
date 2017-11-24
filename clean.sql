@@ -11,3 +11,6 @@ DROP TABLE fornecedor;
 DROP TABLE categoria_simples;
 DROP TABLE super_categoria;
 DROP TABLE categoria;
+
+DROP TYPE tipo_lado;
+DROP TYPE tipo_altura;
