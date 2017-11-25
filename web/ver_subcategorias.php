@@ -11,19 +11,20 @@
         $user ="ist180832";
         $password = "LAZloh986";
         $dbname = $user;
-    
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = "SELECT categoria FROM constituida WHERE super_categoria = '$supercategoria';";
         $result = $db->query($sql);
 
+        echo("<h1>!!!Incomplete!! Can only see DIRECT subcategorias. Must see all levels! </h1>");
         echo("<h3>Subcategorias de $supercategoria:</h3>");
         echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
         foreach($result as $row)
         {
             echo("<tr>\n");
             echo("<td>{$row['categoria']}</td>\n");
+            echo("<td><a href=\"not_implemented.php\">Remover</a></td>\n");
             echo("</tr>\n");
         }
         echo("<tr>\n");

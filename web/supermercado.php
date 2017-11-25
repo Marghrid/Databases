@@ -26,8 +26,8 @@
         echo "<th>EAN</th>\n";
         echo "<th>Designação</th>\n";
         echo "<th>Categoria</th>\n";
-        echo "<th>Fornecedor Primário</th>\n";
-        echo "<th>Data do primeiro fornecimento</th>\n";
+        echo "<th>Fornecedor <br>Primário</th>\n";
+        echo "<th>Data do primeiro <br> fornecimento</th>\n";
         echo "</tr>\n";
         foreach($result as $row)
         {
@@ -37,12 +37,15 @@
             echo("<td>{$row['categoria']}</td>\n");
             echo("<td>{$row['forn_primario']}</td>\n");
             echo("<td>{$row['data']}</td>\n");
+            echo("<td><a href=\"not_implemented.php\">Alterar designação</a></td>\n");
+            echo("<td><a href=\"not_implemented.php\">Ver reposições</a></td>\n");
             
             echo("</tr>\n");
         }
         echo("<tr>\n");
-        //echo("<td><a href=\"nova_categoria.php\">Adicionar nova</a></td>\n");
-        //echo("</tr>\n");
+        echo("<td colspan=6><a href=\"not_implemented.php\">Adicionar produto</a></td>\n");
+        echo("</tr>\n");
+       
         echo("</table>\n");
 
 
@@ -55,6 +58,7 @@
         {
             echo("<tr>\n");
             echo("<td>{$row['nome']}</td>\n");
+            echo("<td><a href=\"not_implemented.php\">Remover</a></td>\n");
             echo("<td><a href=\"ver_subcategorias.php?nome_categoria={$row['nome']}\">Ver subcategorias</a></td>\n");
             echo("</tr>\n");
         }
