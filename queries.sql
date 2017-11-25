@@ -12,3 +12,8 @@
 --    superior a 10?
 
 -- e) Quais os produtos (ean) que foram repostos sempre pelo mesmo operador?
+
+SELECT ean
+FROM reposicao
+GROUP BY ean
+HAVING COUNT(DISTINCT operador) = 1;

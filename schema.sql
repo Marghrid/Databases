@@ -83,7 +83,7 @@ CREATE TABLE planograma(
 
 CREATE TABLE evento_reposicao(
     operador    NUMERIC(9)  NOT NULL UNIQUE, -- nif do empregado
-    instante    TIMESTAMP   NOT NULL UNIQUE CHECK (instante > CURRENT_TIMESTAMP),
+    instante    TIMESTAMP   NOT NULL UNIQUE CHECK (instante < CURRENT_TIMESTAMP),
     PRIMARY KEY (instante),
     UNIQUE (operador, instante)
 );
