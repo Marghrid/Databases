@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
     <body>
     <h1>Supermercado</h1>
 <?php
@@ -18,7 +21,14 @@
         $sql = "SELECT * FROM produto;";
         $result = $db->query($sql);
         echo("<h3>Produtos:</h3>");
-        echo("<table border=\"5\" cellspacing=\"5\">\n");
+        echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
+        echo "<tr>\n";
+        echo "<th>EAN</th>\n";
+        echo "<th>Designação</th>\n";
+        echo "<th>Categoria</th>\n";
+        echo "<th>Fornecedor Primário</th>\n";
+        echo "<th>Data do primeiro fornecimento</th>\n";
+        echo "</tr>\n";
         foreach($result as $row)
         {
             echo("<tr>\n");
@@ -40,13 +50,12 @@
         $sql = "SELECT * FROM categoria;";
         $result = $db->query($sql);
         echo("<h3>Categorias:</h3>");
-        echo("<table border=\"5\" cellspacing=\"5\">\n");
+        echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
         foreach($result as $row)
         {
             echo("<tr>\n");
             echo("<td>{$row['nome']}</td>\n");
-            //echo("<td>{$row['branch_name']}</td>\n");
-            //echo("<td>{$row['balance']}</td>\n");
+            echo("<td><a href=\"ver_subcategorias.php?nome_categoria={$row['nome']}\">Ver subcategorias</a></td>\n");
             echo("</tr>\n");
         }
         echo("<tr>\n");
