@@ -15,7 +15,14 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT nome FROM categoria WHERE nome != '$supercategoria';";
+        $sql = "SELECT nome 
+                FROM categoria 
+                WHERE nome != '$supercategoria' 
+                    AND nome NOT IN (
+                        SELECT categoria 
+                        FROM constituida 
+                        WHERE super_categoria = '$supercategoria');";
+
         $result = $db->query($sql);
 
         echo("<h3>Qual das categorias quer adicionar como subcategoria de $supercategoria</h3>");
@@ -32,9 +39,9 @@
         echo("</tr>\n");
         echo("</table>\n");
 
-    	echo("<p><a href=\"supermercado.php\">Voltar</a></p>");
+        echo("<p><a href=\"supermercado.php\">Voltar</a></p>");
 
-    	$db = null;
+        $db = null;
     }
     catch (PDOException $e)
     {

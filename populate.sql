@@ -66,7 +66,6 @@ INSERT INTO fornece_sec VALUES (224456789, 6456785069611); --fornecedor08 Laranj
 INSERT INTO fornece_sec VALUES (423835788, 6456785069611); --fornecedor09 Laranja do Algarve
 INSERT INTO fornece_sec VALUES (123000759, 6456785069611); --fornecedor10 Laranja do Algarve
 
-
 INSERT INTO corredor VALUES (1, 200);
 INSERT INTO corredor VALUES (2, 190);
 INSERT INTO corredor VALUES (3, 180);
