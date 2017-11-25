@@ -15,6 +15,10 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        // Mostrar todas as categorias que podem ser adicionadas, i. e.
+        //  todas as categorias que 
+        //   (1) Não são a própria categoria
+        //   (2) Não são já descendentes diretas dela
         $sql = "SELECT nome 
                 FROM categoria 
                 WHERE nome != '$supercategoria' 
@@ -25,13 +29,20 @@
 
         $result = $db->query($sql);
 
-        echo("<h3>Qual das categorias quer adicionar como subcategoria de $supercategoria</h3>");
+        echo("<h3>Qual das categorias quer adicionar como
+            subcategoria de $supercategoria</h3>");
 
         echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
         foreach($result as $row)
         {
             echo("<tr>\n");
-            echo("<td><a href=\"insert_subcat.php?supercategoria=$supercategoria&subcategoria={$row['nome']}\">{$row['nome']}</a></td>\n");
+            echo("<td>
+                    <a href=\"insert_subcat.php?
+                    supercategoria=$supercategoria&
+                    subcategoria={$row['nome']}\">
+                        {$row['nome']}
+                    </a>
+                </td>\n");
             echo("</tr>\n");
         }
         echo("<tr>\n");
