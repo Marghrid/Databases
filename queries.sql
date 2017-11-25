@@ -3,8 +3,10 @@
 -- a) Qual o nome do fornecedor que forneceu o maior número de categorias?
 --    Note que pode ser mais do que um fornecedor.
 
--- b) Quais os fornecedores primários (nome e nif) que forneceram produtos de
+
+-- b) Quais os fornecedores primarios (nome e nif) que forneceram produtos de
 --    todas as categorias simples?
+
 
 -- c) Quais os produtos (ean) que nunca foram repostos?
 SELECT ean
@@ -19,7 +21,7 @@ WHERE ean NOT IN (
 SELECT ean
 FROM fornece_sec
 GROUP BY ean
-HAVING COUNT(fornece_sec) > 10;
+HAVING COUNT(nif) > 10;
 
 -- e) Quais os produtos (ean) que foram repostos sempre pelo mesmo operador?
 SELECT ean
