@@ -7,7 +7,7 @@
     {
         $host = "db.ist.utl.pt";
         $user ="ist180832";
-        $password = "LAZloh986";
+        $password = "carreiracarreira";
         $dbname = $user;
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
