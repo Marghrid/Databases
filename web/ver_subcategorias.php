@@ -15,10 +15,17 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT categoria FROM constituida WHERE super_categoria = '$supercategoria';";
+        $sql = "WITH RECURSIVE todas_subcategorias(super_categoria, categoria) AS (
+                    SELECT super_categoria, categoria FROM constituida WHERE super_categoria = 'supersuper'
+                    UNION ALL
+                    SELECT c.super_categoria, c.categoria
+                    FROM todas_subcategorias s, constituida c
+                    WHERE c.super_categoria = s.categoria
+                  )
+                SELECT categoria
+                FROM todas_subcategorias;";
         $result = $db->query($sql);
 
-        echo("<h1>!!!Incomplete!! Can only see DIRECT subcategorias. Must see all levels! </h1>");
         echo("<h3>Subcategorias de '$supercategoria':</h3>");
         echo("<table>\n");
         foreach($result as $row)
