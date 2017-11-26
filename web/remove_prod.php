@@ -16,11 +16,20 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                $db->query("start transaction;");
+
+                $sql = "DELETE FROM fornece_sec WHERE ean='$ean';";
+                echo("<p>Removing $ean from fornece_sec:</p>");
+                echo("<p>$sql</p>");
+                $db->query($sql);
+
                 $sql = "DELETE FROM produto WHERE ean='$ean';";
-                echo("<p>Removing $ean:</p>");
+                echo("<p>Removing $ean from produto:</p>");
                 echo("<p>$sql</p>");
 
                 $db->query($sql);
+
+                $db->query("commit;");
 
                 $db = null;
             }

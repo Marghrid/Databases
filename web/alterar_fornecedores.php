@@ -33,7 +33,7 @@
                 echo("<tr>\n");
                 echo("<td>{$row['forn_primario']}</td>\n");
                 echo("<td>{$row['nome']}</td>\n");
-                echo("<td><a href=\"alterar_forn_prim.php?ean=$ean&design=$design\">Alterar</a></td>\n");
+                echo("<td><a href=\"alterar_forn_prim.php?forn_prim=$forn_prim&ean=$ean&design=$design\">Alterar</a></td>\n");
                 echo("</tr>\n");
             }
             echo("</table>\n");
@@ -57,11 +57,11 @@
                 echo("<tr>\n");
                 echo("<td>{$row['nif']}</td>\n");
                 echo("<td>{$row['nome']}</td>\n");
-                echo("<td><a href=\"remove_forn_secundario.php?ean=$ean&design=$design\">Remover</a></td>\n");
+                echo("<td><a href=\"remove_forn_secundario.php?forn_prim=$forn_prim&forn_sec={$row['nif']}&ean=$ean&design=$design\">Remover</a></td>\n");
                 echo("</tr>\n");
             }
-            echo("<tr>\n<td colspan=3><p><a href=\"adicionar_forn_secundario.php?ean=$ean&design=$design\">Adicionar Fornecedor Secundário</p></td>\n</tr>\n");
-            echo("</table>\n");            
+            echo("<tr>\n<td colspan=3><p><a href=\"adicionar_forn_secundario.php?forn_prim=$forn_prim&ean=$ean&design=$design\">Adicionar Fornecedor Secundário</p></td>\n</tr>\n");
+            echo("</table>\n");
 
             $db = null;
         }

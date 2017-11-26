@@ -44,9 +44,6 @@
                         </td>\n");
                     echo("</tr>\n");
                 }
-                echo("<tr>\n");
-                
-                echo("</tr>\n");
                 echo("</table>\n");
 
                 $db = null;

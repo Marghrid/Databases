@@ -3,10 +3,15 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
     <body>
         <?php
-            $new_design = $_REQUEST['design'];
             $ean = $_REQUEST['ean'];
+            $novo_forn_prim = $_REQUEST['novo_forn_prim'];
+            $is_sec = $_REQUEST['is_sec'];
 
             try
             {
@@ -17,12 +22,27 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = "UPDATE produto SET design='$new_design' WHERE ean='$ean';";
-                echo("<p>Alterar designação do produto com ean = $ean para $new_design</p>");
+                $db->query("begin transaction;");
+
+                if($is_sec == "yes")
+                {
+                    $sql = "DELETE FROM fornece_sec WHERE ean='$ean' AND nif='$novo_forn_prim';";
+                    echo("<p>Remover fornecedor secundário do produto</p>");
+                    echo("$sql");
+
+                    $db->query($sql);
+                }
+
+
+                $sql = "UPDATE produto SET forn_primario='$novo_forn_prim' WHERE ean='$ean';";
+                echo("<p>Alterar o fornecedor primário do produto(ean = $ean) para '$novo_forn_prim'</p>");
                 echo("$ean");
+                echo("$novo_forn_prim");
                 echo("<p>$sql</p>");
 
                 $db->query($sql);
+
+                $db->query("commit;");
 
                 $db = null;
             }

@@ -3,10 +3,16 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
     <body>
         <?php
-            $new_design = $_REQUEST['design'];
+            $forn_prim = $_REQUEST['forn_prim'];
+            $forn_sec = $_REQUEST['forn_sec'];
             $ean = $_REQUEST['ean'];
+            $design = $_REQUEST['design'];
 
             try
             {
@@ -17,9 +23,8 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = "UPDATE produto SET design='$new_design' WHERE ean='$ean';";
-                echo("<p>Alterar designação do produto com ean = $ean para $new_design</p>");
-                echo("$ean");
+                $sql = "INSERT INTO fornece_sec VALUES ('$forn_sec','$ean');";
+                echo("<p>Adicionar o fornecedor secundário '$forn_sec' ao produto(ean = $ean)</p>");
                 echo("<p>$sql</p>");
 
                 $db->query($sql);

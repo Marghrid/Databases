@@ -59,20 +59,30 @@
 
 
                 // Categorias:
-                $sql = "SELECT * FROM categoria;";
-                $result = $db->query($sql);
                 echo("<h3>Categorias:</h3>");
                 echo("<table>\n");
                 echo "<tr>\n";
                 echo "<th>Nome</th>\n";
                 echo "<th colspan=3>Opções</th>\n";
                 echo "</tr>\n";
+                $sql = "SELECT * FROM categoria WHERE nome NOT IN (SELECT nome FROM categoria_simples);";
+                $result = $db->query($sql);
                 foreach($result as $row)
                 {
                     echo("<tr>\n");
                     echo("<td>{$row['nome']}</td>\n");
                     echo("<td><a href=\"remove_warning_cat.php?nome_categoria={$row['nome']}\">Remover</a></td>\n");
                     echo("<td><a href=\"ver_subcategorias.php?nome_categoria={$row['nome']}\">Ver subcategorias</a></td>\n");
+                    echo("</tr>\n");
+                }
+                $sql = "SELECT * FROM categoria WHERE nome NOT IN (SELECT nome FROM super_categoria);";
+                $result = $db->query($sql);
+                foreach($result as $row)
+                {
+                    echo("<tr>\n");
+                    echo("<td>{$row['nome']}</td>\n");
+                    echo("<td><a href=\"remove_warning_cat.php?nome_categoria={$row['nome']}\">Remover</a></td>\n");
+                    echo("<td>-</td>\n");
                     echo("</tr>\n");
                 }
                 echo("<tr>\n");
