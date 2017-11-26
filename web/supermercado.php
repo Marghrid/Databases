@@ -37,8 +37,8 @@
             echo("<td>{$row['categoria']}</td>\n");
             echo("<td>{$row['forn_primario']}</td>\n");
             echo("<td>{$row['data']}</td>\n");
-            echo("<td><a href=\"not_implemented.php\">Alterar designação</a></td>\n");
-            echo("<td><a href=\"not_implemented.php\">Ver reposições</a></td>\n");
+            echo("<td><a href=\"alterar_designacao.php?ean={$row['ean']}\">Alterar designação</a></td>\n");
+            echo("<td><a href=\"ver_reposicoes.php?ean={$row['ean']}\">Ver reposições</a></td>\n");
             
             echo("</tr>\n");
         }
