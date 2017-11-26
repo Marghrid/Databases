@@ -37,7 +37,7 @@
         {
             echo("<tr>\n");
             echo("<td>
-                    <a href=\"insert_subcat.php?supercategoria=$supercategoria&subcategoria={$row['nome']}\">
+                    <a href=\"insert_constituida.php?supercategoria=$supercategoria&subcategoria={$row['nome']}\">
                         {$row['nome']}
                     </a>
                 </td>\n");

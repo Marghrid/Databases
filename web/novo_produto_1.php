@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
     <body>
         <h3>Adicionar novo produto:</h3>
         <form action="novo_produto_2.php" method="post">
@@ -8,7 +11,7 @@
             <p><input type="hidden" name="forn_prim" value="<?=$_REQUEST['forn_prim']?>"/></p>
             <p><input type="hidden" name="data" value="<?=$_REQUEST['data']?>"/></p>-->
             <p>EAN: <input type="number" name="ean"/></p>
-            <p>Designacao: <input type="text" name="design"/></p>
+            <p>Designação: <input type="text" name="design"/></p>
 
             <!--<p>Categoria: <input type="text" name="categoria" value="<?=$_REQUEST['categoria']?>"/></p>-->
             <!-- Forma de escolher a categoria da lista (nao pode ser nested form)-->

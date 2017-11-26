@@ -44,7 +44,7 @@
             echo("</tr>\n");
         }
         echo("<tr>\n");
-        echo("<td colspan=6><a href=\"adicionar_produto.php\">Adicionar produto</a></td>\n");
+        echo("<td colspan=6><a href=\"novo_produto_1.php\">Adicionar produto</a></td>\n");
         echo("</tr>\n");
        
         echo("</table>\n");

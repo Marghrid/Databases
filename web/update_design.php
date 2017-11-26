@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
     <body>
         <?php
             $new_design = $_REQUEST['design'];
@@ -14,7 +17,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $sql = "UPDATE produto SET design='$new_design' WHERE ean='$ean';";
-                echo("$new_design");
+                echo("<p>Alterar designação do produto com ean = $ean para $new_design</p>");
                 echo("$ean");
                 echo("<p>$sql</p>");
 
