@@ -66,8 +66,30 @@
         echo("<td><a href=\"nova_categoria.php\">Adicionar nova</a></td>\n");
         echo("</tr>\n");
         echo("</table>\n");
-    
 
+
+    
+        //Fornecedores:
+         $sql = "SELECT * FROM fornecedor;";
+        $result = $db->query($sql);
+        echo("<h3>Fornecedores:</h3>");
+        echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
+        echo "<tr>\n";
+        echo "<th>NIF</th>\n";
+        echo "<th>Nome</th>\n";
+        echo "</tr>\n";
+        foreach($result as $row)
+        {
+            echo("<tr>\n");
+            echo("<td>{$row['nif']}</td>\n");
+            echo("<td>{$row['nome']}</td>\n");
+            echo("<td><a href=\"not_implemented.php\">Remover</a></td>\n");
+            echo("</tr>\n");
+        }
+        echo("<tr>\n");
+        echo("<td colspan=2><a href=\"not_implemented.php\">Adicionar novo</a></td>\n");
+        echo("</tr>\n");
+        echo("</table>\n");
 
 
         $db = null;

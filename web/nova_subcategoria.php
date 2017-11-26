@@ -30,7 +30,7 @@
         $result = $db->query($sql);
 
         echo("<h3>Qual das categorias quer adicionar como
-            subcategoria de $supercategoria</h3>");
+            subcategoria de $supercategoria?</h3>");
 
         echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
         foreach($result as $row)
