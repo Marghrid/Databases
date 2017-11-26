@@ -19,13 +19,13 @@
         $result = $db->query($sql);
 
         echo("<h1>!!!Incomplete!! Can only see DIRECT subcategorias. Must see all levels! </h1>");
-        echo("<h3>Subcategorias de $supercategoria:</h3>");
+        echo("<h3>Subcategorias de '$supercategoria':</h3>");
         echo("<table>\n");
         foreach($result as $row)
         {
             echo("<tr>\n");
             echo("<td>{$row['categoria']}</td>\n");
-            echo("<td><a href=\"not_implemented.php\">Remover</a></td>\n");
+            echo("<td><a href=\"remove_subcat_warning.php?nome_categoria=$supercategoria&nome_subcategoria={$row['categoria']}\">Remover</a></td>\n");
             echo("</tr>\n");
         }
         echo("<tr>\n");

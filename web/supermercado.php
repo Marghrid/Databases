@@ -33,7 +33,7 @@
         echo "<th>Categoria</th>\n";
         echo "<th>Fornecedor <br>Primário</th>\n";
         echo "<th>Data do primeiro <br> fornecimento</th>\n";
-        echo "<th colspan=3>Opções</th>\n";
+        echo "<th colspan=4>Opções</th>\n";
         echo "</tr>\n";
         foreach($result as $row)
         {
@@ -45,13 +45,14 @@
             echo("<td>{$row['forn_primario']}</td>\n");
             echo("<td>{$row['data']}</td>\n");
             echo("<td><a href=\"alterar_designacao.php?ean={$row['ean']}&design={$row['design']}\">Alterar designação</a></td>\n");
+            echo("<td><a href=\"alterar_fornecedores.php?ean={$row['ean']}&design={$row['design']}&forn_prim={$row['forn_primario']}\">Alterar fornecedores</a></td>\n");
             echo("<td><a href=\"ver_reposicoes.php?ean={$row['ean']}&design={$row['design']}\">Ver reposições</a></td>\n");
             echo("<td><a href=\"remove_warning_prod.php?ean={$row['ean']}&design={$row['design']}\">Remover Produto</a></td>\n");
             
             echo("</tr>\n");
         }
         echo("<tr>\n");
-        echo("<td colspan=8><a href=\"novo_produto_1.php\"><b>Adicionar produto</b></a></td>\n");
+        echo("<td colspan=9><a href=\"novo_produto_1.php\"><b>Adicionar produto</b></a></td>\n");
         echo("</tr>\n");
        
         echo("</table>\n");

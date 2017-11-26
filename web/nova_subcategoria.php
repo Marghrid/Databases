@@ -55,7 +55,7 @@
     {
         echo("<p>ERROR: {$e->getMessage()}</p>");
     }
-    echo("<p><a href=\"supermercado.php\">Voltar</a></p>");
+    echo("<p><a href=\"ver_subcategorias.php?nome_categoria=$supercategoria\"> Voltar</a></p>");
 
 ?>
     </body>
