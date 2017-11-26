@@ -50,6 +50,7 @@ CREATE TABLE fornece_sec(
     nif NUMERIC(9)  NOT NULL,
     ean NUMERIC(13) NOT NULL,
     PRIMARY KEY (nif, ean),
+    FOREIGN KEY (nif) REFERENCES fornecedor(nif),
     FOREIGN KEY (ean) REFERENCES produto(ean)
 );
 
