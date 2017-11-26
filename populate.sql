@@ -10,8 +10,16 @@ INSERT INTO categoria VALUES ('Animais de estimacao');
 INSERT INTO categoria VALUES ('Comida de gato');
 INSERT INTO categoria VALUES ('Comida de cao');
 
-INSERT INTO super_categoria VALUES ('Animais de estimacao');
+INSERT INTO super_categoria VALUES ('Lacticineos');
+INSERT INTO super_categoria VALUES ('Produtos Higienicos');
+INSERT INTO super_categoria VALUES ('Fruta');
 INSERT INTO super_categoria VALUES ('Eletrodomesticos');
+INSERT INTO super_categoria VALUES ('Animais de estimacao');
+
+INSERT INTO categoria_simples VALUES ('Maquinas de cafe');
+INSERT INTO categoria_simples VALUES ('Maquinas de lavar roupa');
+INSERT INTO categoria_simples VALUES ('Comida de gato');
+INSERT INTO categoria_simples VALUES ('Comida de cao');
 
 INSERT INTO constituida VALUES ('Animais de estimacao','Comida de cao');
 INSERT INTO constituida VALUES ('Animais de estimacao','Comida de gato');
