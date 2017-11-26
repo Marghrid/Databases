@@ -29,7 +29,7 @@
             echo("</tr>\n");
         }
         echo("<tr>\n");
-        echo("<td><a href=\"nova_subcategoria.php?supercategoria=$supercategoria\">Adicionar nova subcategoria</a></td>\n");
+        echo("<td colspan=2><a href=\"nova_subcategoria.php?supercategoria=$supercategoria\">Adicionar nova subcategoria</a></td>\n");
         echo("</tr>\n");
         echo("</table>\n");
 

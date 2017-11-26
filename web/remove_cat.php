@@ -16,11 +16,24 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = "DELETE FROM categoria WHERE nome='$nome_categoria';";
-                echo("<p>Removing $nome_categoria:</p>");
-                echo("<p>$sql</p>");
+                $db->query("begin transaction;");
 
+                $sql = "DELETE FROM super_categoria WHERE nome='$nome_categoria';";
+                echo("<p>Trying to Remove $nome_categoria from super_categoria:</p>");
+                echo("<p>$sql</p>");
                 $db->query($sql);
+                
+                $sql = "DELETE FROM categoria_simples WHERE nome='$nome_categoria';";
+                echo("<p>Trying to Remove $nome_categoria from categoria_simples:</p>");
+                echo("<p>$sql</p>");
+                $db->query($sql);
+
+                $sql = "DELETE FROM categoria WHERE nome='$nome_categoria';";
+                echo("<p>Trying to Remove $nome_categoria from categoria:</p>");
+                echo("<p>$sql</p>");
+                $db->query($sql);
+
+                $db->query("commit;");
 
                 $db = null;
             }
