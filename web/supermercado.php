@@ -37,13 +37,14 @@
             echo("<td>{$row['categoria']}</td>\n");
             echo("<td>{$row['forn_primario']}</td>\n");
             echo("<td>{$row['data']}</td>\n");
-            echo("<td><a href=\"not_implemented.php\">Alterar designação</a></td>\n");
-            echo("<td><a href=\"not_implemented.php\">Ver reposições</a></td>\n");
+            echo("<td><a href=\"alterar_designacao.php?ean={$row['ean']}\">Alterar designação</a></td>\n");
+            echo("<td><a href=\"ver_reposicoes.php?ean={$row['ean']}\">Ver reposições</a></td>\n");
+            echo("<td><a href=\"remove_warning_prod.php?ean={$row['ean']}\">Remover Produto</a></td>\n");
             
             echo("</tr>\n");
         }
         echo("<tr>\n");
-        echo("<td colspan=6><a href=\"not_implemented.php\">Adicionar produto</a></td>\n");
+        echo("<td colspan=6><a href=\"adicionar_produto.php\">Adicionar produto</a></td>\n");
         echo("</tr>\n");
        
         echo("</table>\n");
@@ -58,7 +59,7 @@
         {
             echo("<tr>\n");
             echo("<td>{$row['nome']}</td>\n");
-            echo("<td><a href=\"not_implemented.php\">Remover</a></td>\n");
+            echo("<td><a href=\"remove_warning_cat.php?nome_categoria={$row['nome']}\">Remover</a></td>\n");
             echo("<td><a href=\"ver_subcategorias.php?nome_categoria={$row['nome']}\">Ver subcategorias</a></td>\n");
             echo("</tr>\n");
         }
