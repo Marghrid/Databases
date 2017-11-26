@@ -50,14 +50,14 @@
         echo("</tr>\n");
         echo("</table>\n");
 
-        echo("<p><a href=\"supermercado.php\">Voltar</a></p>");
-
         $db = null;
     }
     catch (PDOException $e)
     {
         echo("<p>ERROR: {$e->getMessage()}</p>");
     }
+    echo("<p><a href=\"supermercado.php\">Voltar</a></p>");
+
 ?>
     </body>
 </html>

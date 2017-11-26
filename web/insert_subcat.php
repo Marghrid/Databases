@@ -15,7 +15,6 @@
         $sql = "INSERT INTO constituida VALUES ('$supercat', '$subcat');";
         echo("$nome_cat");
         echo("<p>$sql</p>");
-        echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
 
         $db->query($sql);
 
@@ -26,6 +25,7 @@
         $db->query("rollback;");
         echo("<p>ERROR: {$e->getMessage()}</p>");
     }
+    echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
 ?>
     </body>
 </html>

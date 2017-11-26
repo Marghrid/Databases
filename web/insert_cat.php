@@ -11,16 +11,11 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $db->query("start transaction;");
-
         $sql = "INSERT INTO categoria VALUES ('$nome_cat');";
         echo("$nome_cat");
         echo("<p>$sql</p>");
-        echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
 
         $db->query($sql);
-
-        $db->query("commit;");
 
         $db = null;
     }
@@ -29,6 +24,7 @@
         $db->query("rollback;");
         echo("<p>ERROR: {$e->getMessage()}</p>");
     }
+    echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
 ?>
     </body>
 </html>

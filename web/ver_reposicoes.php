@@ -10,6 +10,7 @@
                 $password = "carreiracarreira";
                 $dbname = $user;
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $sql = "SELECT * FROM reposicao WHERE ean='$ean';";
                 /*echo("<h3>Reposicao do produto (ean= $ean):");
@@ -44,10 +45,6 @@
                 }
                 echo("</table>\n");
 
-                echo("<p><a href=\"supermercado.php\">Voltar</a></p>");
-
-                //$db->query("commit;");
-
                 $db = null;
             }
             catch (PDOException $e)
@@ -55,6 +52,7 @@
                 $db->query("rollback;");
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
+            echo("<p><a href=\"supermercado.php\">Voltar</a></p>");
         ?>
     </body>
 </html>
