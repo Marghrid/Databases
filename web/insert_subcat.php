@@ -13,7 +13,7 @@
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = "INSERT INTO constituida VALUES ('$supercat', '$subcat');";
-        echo("$nome_cat");
+        echo("<p>Adicionar nova subcategoria $subcat a $supercat:</p>");
         echo("<p>$sql</p>");
 
         $db->query($sql);

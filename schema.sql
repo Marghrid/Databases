@@ -1,5 +1,4 @@
 /* schema.sql: Ficheiro de criação do esquema da base de dados. */
-/* schema.sql: Ficheiro de criação do esquema da base de dados. */
 
 CREATE TYPE tipo_lado   AS ENUM ('direito', 'esquerdo');
 CREATE TYPE tipo_altura AS ENUM ('chao', 'medio', 'superior');

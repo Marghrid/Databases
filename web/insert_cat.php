@@ -12,7 +12,7 @@
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = "INSERT INTO categoria VALUES ('$nome_cat');";
-        echo("$nome_cat");
+        echo("<p>Adicionar nova categoria $nome_cat:</p>");
         echo("<p>$sql</p>");
 
         $db->query($sql);

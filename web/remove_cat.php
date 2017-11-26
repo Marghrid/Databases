@@ -13,7 +13,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $sql = "DELETE FROM categoria WHERE nome='$nome_categoria';";
-                echo("Removing $nome_categoria:");
+                echo("<p>Removing $nome_categoria:</p>");
                 echo("<p>$sql</p>");
 
                 $db->query($sql);
