@@ -1,4 +1,8 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
     <body>
         <h3>Tem a certeza que quer remover o produto (ean= <?=$_REQUEST['ean']?>)?</h3>
         <form action="remove_prod.php" method="post">

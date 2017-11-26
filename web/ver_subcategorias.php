@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
 <?php
@@ -19,7 +20,7 @@
 
         echo("<h1>!!!Incomplete!! Can only see DIRECT subcategorias. Must see all levels! </h1>");
         echo("<h3>Subcategorias de $supercategoria:</h3>");
-        echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
+        echo("<table>\n");
         foreach($result as $row)
         {
             echo("<tr>\n");

@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
 		<?php
@@ -24,7 +25,7 @@
 		
 		        echo("<h3>A que categoria pertence $design (ean = $ean)?</h3>");
 		
-		        echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
+		        echo("<table>\n");
 		        foreach($result as $row)
 		        {
 		            echo("<tr>\n");

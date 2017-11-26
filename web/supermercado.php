@@ -1,6 +1,11 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
     <h1>Supermercado</h1>
@@ -21,17 +26,19 @@
         $sql = "SELECT * FROM produto;";
         $result = $db->query($sql);
         echo("<h3>Produtos:</h3>");
-        echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
+        echo("<table>\n");
         echo "<tr>\n";
         echo "<th>EAN</th>\n";
         echo "<th>Designação</th>\n";
         echo "<th>Categoria</th>\n";
         echo "<th>Fornecedor <br>Primário</th>\n";
         echo "<th>Data do primeiro <br> fornecimento</th>\n";
+        echo "<th colspan=3>Opções</th>\n";
         echo "</tr>\n";
         foreach($result as $row)
         {
             echo("<tr>\n");
+
             echo("<td>{$row['ean']}</td>\n");
             echo("<td>{$row['design']}</td>\n");
             echo("<td>{$row['categoria']}</td>\n");
@@ -44,7 +51,7 @@
             echo("</tr>\n");
         }
         echo("<tr>\n");
-        echo("<td colspan=6><a href=\"novo_produto_1.php\">Adicionar produto</a></td>\n");
+        echo("<td colspan=8><a href=\"novo_produto_1.php\"><b>Adicionar produto</b></a></td>\n");
         echo("</tr>\n");
        
         echo("</table>\n");
@@ -54,7 +61,11 @@
         $sql = "SELECT * FROM categoria;";
         $result = $db->query($sql);
         echo("<h3>Categorias:</h3>");
-        echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
+        echo("<table>\n");
+        echo "<tr>\n";
+        echo "<th>Nome</th>\n";
+        echo "<th colspan=3>Opções</th>\n";
+        echo "</tr>\n";
         foreach($result as $row)
         {
             echo("<tr>\n");
@@ -64,7 +75,7 @@
             echo("</tr>\n");
         }
         echo("<tr>\n");
-        echo("<td><a href=\"nova_categoria.php\">Adicionar nova</a></td>\n");
+        echo("<td colspan=3><a href=\"nova_categoria.php\"><b>Adicionar nova</b></a></td>\n");
         echo("</tr>\n");
         echo("</table>\n");
 
@@ -74,10 +85,11 @@
          $sql = "SELECT * FROM fornecedor;";
         $result = $db->query($sql);
         echo("<h3>Fornecedores:</h3>");
-        echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
+        echo("<table>\n");
         echo "<tr>\n";
         echo "<th>NIF</th>\n";
         echo "<th>Nome</th>\n";
+        echo "<th>Opções</th>\n";
         echo "</tr>\n";
         foreach($result as $row)
         {
@@ -88,7 +100,7 @@
             echo("</tr>\n");
         }
         echo("<tr>\n");
-        echo("<td colspan=2><a href=\"not_implemented.php\">Adicionar novo</a></td>\n");
+        echo("<td colspan=3><a href=\"not_implemented.php\"><b>Adicionar novo</b></a></td>\n");
         echo("</tr>\n");
         echo("</table>\n");
 

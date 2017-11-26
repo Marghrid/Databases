@@ -1,0 +1,37 @@
+h1, h2, h3, h4, h5, h6, p, table, td, th {
+	font-family: sans-serif;
+	color: darkblue;
+}
+
+table {
+	background-color: #f4f5f7;
+}
+
+tr {
+	background-color: #d7dbe2;
+}
+tr:nth-child(even) {
+	background-color: #e8edf4;
+}
+tr:hover {
+	background-color: #f9fafb;
+}
+
+td, th {
+	padding: 7;
+}
+
+th {
+	background-color: #2c56aa;
+	color: white;
+}
+td {
+	border: 1px solid darkblue;
+}
+
+
+table {
+	border: 2px solid darkblue;
+	border-collapse: collapse;
+	text-align: center;
+}

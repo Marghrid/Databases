@@ -1,4 +1,8 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
     <body>
         <?php
             $ean = $_REQUEST['ean'];
@@ -21,7 +25,7 @@
                 $result = $db->query($sql);
 
                 echo("<h3>Reposicoes do produto (ean= $ean):</h3>");
-                echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
+                echo("<table>\n");
                 echo("<tr>\n");
                 echo("<th>EAN</th>\n");
                 echo("<th>Numero</th>\n");
