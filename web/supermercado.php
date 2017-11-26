@@ -44,9 +44,9 @@
             echo("<td>{$row['categoria']}</td>\n");
             echo("<td>{$row['forn_primario']}</td>\n");
             echo("<td>{$row['data']}</td>\n");
-            echo("<td><a href=\"alterar_designacao.php?ean={$row['ean']}\">Alterar designação</a></td>\n");
-            echo("<td><a href=\"ver_reposicoes.php?ean={$row['ean']}\">Ver reposições</a></td>\n");
-            echo("<td><a href=\"remove_warning_prod.php?ean={$row['ean']}\">Remover Produto</a></td>\n");
+            echo("<td><a href=\"alterar_designacao.php?ean={$row['ean']}&design={$row['design']}\">Alterar designação</a></td>\n");
+            echo("<td><a href=\"ver_reposicoes.php?ean={$row['ean']}&design={$row['design']}\">Ver reposições</a></td>\n");
+            echo("<td><a href=\"remove_warning_prod.php?ean={$row['ean']}&design={$row['design']}\">Remover Produto</a></td>\n");
             
             echo("</tr>\n");
         }
@@ -96,11 +96,11 @@
             echo("<tr>\n");
             echo("<td>{$row['nif']}</td>\n");
             echo("<td>{$row['nome']}</td>\n");
-            echo("<td><a href=\"not_implemented.php\">Remover</a></td>\n");
+            echo("<td><a href=\"remove_fornecedor_warning.php?nif={$row['nif']}&nome={$row['nome']}\">Remover</a></td>\n");
             echo("</tr>\n");
         }
         echo("<tr>\n");
-        echo("<td colspan=3><a href=\"not_implemented.php\"><b>Adicionar novo</b></a></td>\n");
+        echo("<td colspan=3><a href=\"novo_fornecedor.php\"><b>Adicionar novo</b></a></td>\n");
         echo("</tr>\n");
         echo("</table>\n");
 

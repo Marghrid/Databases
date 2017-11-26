@@ -4,7 +4,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <h3>Alterar designação do produto (ean= <?=$_REQUEST['ean']?>):</h3>
+        <h3>Alterar designação do produto (ean = <?=$_REQUEST['ean']?>, designacao atual = <?=$_REQUEST['design']?>):</h3>
         <form action="update_design_produto.php" method="post">
             <p><input type="hidden" name="ean" value="<?=$_REQUEST['ean']?>"/></p>
             <p><input type="hidden" name="design" value="<?=$_REQUEST['design']?>"/></p>

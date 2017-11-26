@@ -6,6 +6,7 @@
     <body>
         <?php
             $ean = $_REQUEST['ean'];
+            $design = $_REQUEST['design'];
 
             try
             {
@@ -24,7 +25,7 @@
 
                 $result = $db->query($sql);
 
-                echo("<h3>Reposicoes do produto (ean= $ean):</h3>");
+                echo("<h3>Reposicoes do produto (ean = $ean, designacao = $design):</h3>");
                 echo("<table>\n");
                 echo("<tr>\n");
                 echo("<th>EAN</th>\n");
