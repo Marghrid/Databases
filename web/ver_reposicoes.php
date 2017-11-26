@@ -19,7 +19,7 @@
 
                 $result = $db->query($sql);
 
-                echo("<h3>Reposicao do produto (ean= $ean):</h3>");
+                echo("<h3>Reposicoes do produto (ean= $ean):</h3>");
                 echo("<table border=\"5\" cellspacing=\"5\" cellpadding=\"5\">\n");
                 echo("<tr>\n");
                 echo("<th>EAN</th>\n");
