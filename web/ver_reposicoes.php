@@ -25,11 +25,11 @@
 
                 $result = $db->query($sql);
 
-                echo("<h3>Reposicoes do produto (ean = $ean, designacao = $design):</h3>");
+                echo("<h3>Reposições do produto (EAN = $ean, designação = $design):</h3>");
                 echo("<table>\n");
                 echo("<tr>\n");
                 echo("<th>EAN</th>\n");
-                echo("<th>Numero</th>\n");
+                echo("<th>Número</th>\n");
                 echo("<th>Lado</th>\n");
                 echo("<th>Altura</th>\n");
                 echo("<th>Operador</th>\n");

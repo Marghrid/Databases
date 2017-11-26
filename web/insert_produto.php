@@ -19,7 +19,7 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
                 $sql = "INSERT INTO produto VALUES ($ean, '$design', '$categoria', $fornecedor, CURRENT_DATE);";
-                echo("<p>Adicionar novo produto $design (ean = $ean):</p>");
+                echo("<p>Adicionar novo produto $design (EAN = $ean):</p>");
                 echo("<p>$sql</p>");
         
                 $db->query($sql);

@@ -17,7 +17,7 @@
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = "INSERT INTO fornecedor VALUES ('$nif', '$nome');";
-        echo("<p>Adicionar novo fornecedor (nif = $nif, nome = $nome):</p>");
+        echo("<p>Adicionar novo fornecedor (NIF = $nif, nome = $nome):</p>");
         echo("<p>$sql</p>");
 
         $db->query($sql);

@@ -23,7 +23,7 @@
         
                 $result = $db->query($sql);
         
-                echo("<h3>Qual o fornecedor primaria de $design (ean = $ean)?</h3>");
+                echo("<h3>Qual o fornecedor primaria de $design (EAN = $ean)?</h3>");
         
                 echo("<table>\n");
                 foreach($result as $row)

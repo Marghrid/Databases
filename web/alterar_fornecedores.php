@@ -20,14 +20,13 @@
                     FROM (SELECT forn_primario FROM produto WHERE ean = $ean) AS prod_nif
                         INNER JOIN fornecedor ON prod_nif.forn_primario=fornecedor.nif;";
             $result = $db->query($sql);
-            echo("<h3>Fornecedores do produto (ean = $ean, designacao = '$design', forn_prim= '$forn_prim'):</h3>");
-
-            echo("<h3>Primario:</h3>");
+            echo("<h3>Fornecedores do produto (EAN = $ean, designação = '$design', fornecedor primário = '$forn_prim'):</h3>");
+            echo("<h3>Primário:</h3>");
             echo("<table>\n");
             echo("<tr>\n");
-            echo("<td>NIF</td>\n");
-            echo("<td>Nome</td>\n");
-            echo("<td>Opcoes</td>\n");
+            echo("<th>NIF</th>\n");
+            echo("<th>Nome</th>\n");
+            echo("<th>Opções</th>\n");
             echo("</tr>\n");
             foreach($result as $row)
             {
@@ -46,12 +45,12 @@
                     WHERE ean='$ean';";
             $result = $db->query($sql);
 
-            echo("<h3>Secundarios:</h3>");
+            echo("<h3>Secundários:</h3>");
             echo("<table>\n");
             echo("<tr>\n");
-            echo("<td>NIF</td>\n");
-            echo("<td>Nome</td>\n");
-            echo("<td>Opcoes</td>\n");
+            echo("<th>NIF</th>\n");
+            echo("<th>Nome</th>\n");
+            echo("<th>Opções</th>\n");
             echo("</tr>\n");
             foreach($result as $row)
             {
@@ -61,7 +60,7 @@
                 echo("<td><a href=\"remove_forn_secundario.php?ean=$ean&design=$design\">Remover</a></td>\n");
                 echo("</tr>\n");
             }
-            echo("<tr>\n<td colspan=3><p><a href=\"adicionar_forn_secundario.php?ean=$ean&design=$design\">Adicionar Fornecedor Secundario</p></td>\n</tr>\n");
+            echo("<tr>\n<td colspan=3><p><a href=\"adicionar_forn_secundario.php?ean=$ean&design=$design\">Adicionar Fornecedor Secundário</p></td>\n</tr>\n");
             echo("</table>\n");            
 
             $db = null;
