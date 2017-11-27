@@ -37,7 +37,7 @@
                     echo("<tr>\n");
                     echo("<td>{$row['nif']}</td>\n");
                     echo("<td>{$row['nome']}</td>\n");
-                    echo("<td><a href=update_primary_forn.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>Escolher</a></td>\n");
+                    echo("<td><a href=update_forn_prim_produto.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>Escolher</a></td>\n");
                     echo("</tr>\n");
                 }
                 $sql = "SELECT *
@@ -50,7 +50,7 @@
                     echo("<tr>\n");
                     echo("<td>{$row['nif']}</td>\n");
                     echo("<td>{$row['nome']}</td>\n");
-                    echo("<td><a href=update_primary_forn.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=yes>Escolher</a>&nbsp(vai ser removido de secundário)</td>\n");
+                    echo("<td><a href=update_forn_prim_produto.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=yes>Escolher</a>&nbsp(vai ser removido de secundário)</td>\n");
                     echo("</tr>\n");
                 }
                 echo("</table>\n");
@@ -62,6 +62,7 @@
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             echo("<p><a href=\"alterar_fornecedores.php?ean=$ean&design=$design&forn_prim=$forn_prim\"> Voltar</a></p>");
+            echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
 
         ?>
     </body>

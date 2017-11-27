@@ -49,7 +49,7 @@
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             echo("<p><a href=\"alterar_fornecedores.php?ean=$ean&design=$design&forn_prim=$forn_prim\"> Voltar</a></p>");
-
+            echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
         ?>
     </body>
 </html>

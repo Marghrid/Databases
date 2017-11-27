@@ -19,7 +19,6 @@
 
                 $sql = "UPDATE produto SET design='$new_design' WHERE ean='$ean';";
                 echo("<p>Alterar designação do produto com ean = $ean para $new_design</p>");
-                echo("$ean");
                 echo("<p>$sql</p>");
 
                 $db->query($sql);
