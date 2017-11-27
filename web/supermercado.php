@@ -64,7 +64,7 @@
                 echo("<table>\n");
                 echo "<tr>\n";
                 echo "<th>Nome</th>\n";
-                echo "<th colspan=3>Opções</th>\n";
+                echo "<th colspan=2>Opções</th>\n";
                 echo "</tr>\n";
                 $sql = "SELECT * 
                         FROM super_categoria
