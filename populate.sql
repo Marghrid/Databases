@@ -62,17 +62,17 @@ INSERT INTO fornecedor VALUES (224456789, 'fornecedor08');
 INSERT INTO fornecedor VALUES (423835788, 'fornecedor09');
 INSERT INTO fornecedor VALUES (123000759, 'fornecedor10');
 
-INSERT INTO produto VALUES (1234567890123, 'Delta Q SuperExpress', 			'Maquinas de cafe',		 	323556789, '2017-11-11');
-INSERT INTO produto VALUES (2345678901231, 'Whiskas saquetas',     			'Comida de gato',  		 	131242353, '2017-11-12');
-INSERT INTO produto VALUES (3456789012312, 'Leite meio gordo Mimosa',     	'Lacticineos',     		 	111222333, '2017-10-11');
-INSERT INTO produto VALUES (3456789032312, 'Iogurte aromas Agros',    		'Lacticineos',    		  	423453686, '2017-10-11');
-INSERT INTO produto VALUES (3456785062712, 'Queijo da Serra da Estrela',    'Lacticineos',     		 	321232343, '2017-10-11');
-INSERT INTO produto VALUES (3356485562712, 'Siemens SuperClothesCleaner',	'Maquinas de lavar roupa',	010010010, '2017-10-11');
-INSERT INTO produto VALUES (3496785072712, 'Maquina roupa X530-ABB',		'Maquinas de lavar roupa',	224456789, '2017-10-11');
-INSERT INTO produto VALUES (3456485662912, 'Maca Royal Gala',				'Fruta',					321232343, '2017-10-11');
-INSERT INTO produto VALUES (3456785056712, 'Pera Rocha',					'Fruta',					321232343, '2017-10-11');
-INSERT INTO produto VALUES (2456385062612, 'Clementina XPTO',				'Fruta',					321232343, '2017-10-11');
-INSERT INTO produto VALUES (6456785069611, 'Laranja do Algarve',			'Fruta',					321232343, '2017-10-11');
+INSERT INTO produto VALUES (1234567890123, 'Delta Q SuperExpress', 			'Maquinas de cafe',		 	323556789, '2017-01-11');
+INSERT INTO produto VALUES (2345678901231, 'Whiskas saquetas',     			'Comida de gato',  		 	131242353, '2016-08-12');
+INSERT INTO produto VALUES (3456789012312, 'Leite meio gordo Mimosa',     	'Lacticineos',     		 	111222333, '2017-06-11');
+INSERT INTO produto VALUES (3456789032312, 'Iogurte aromas Agros',    		'Lacticineos',    		  	423453686, '2016-03-11');
+INSERT INTO produto VALUES (3456785062712, 'Queijo da Serra da Estrela',    'Lacticineos',     		 	321232343, '2017-09-11');
+INSERT INTO produto VALUES (3356485562712, 'Siemens SuperClothesCleaner',	'Maquinas de lavar roupa',	010010010, '2015-04-11');
+INSERT INTO produto VALUES (3496785072712, 'Maquina roupa X530-ABB',		'Maquinas de lavar roupa',	224456789, '2015-10-11');
+INSERT INTO produto VALUES (3456485662912, 'Maca Royal Gala',				'Fruta',					321232343, '2016-02-11');
+INSERT INTO produto VALUES (3456785056712, 'Pera Rocha',					'Fruta',					321232343, '2015-07-11');
+INSERT INTO produto VALUES (2456385062612, 'Clementina XPTO',				'Fruta',					321232343, '2015-05-11');
+INSERT INTO produto VALUES (6456785069611, 'Laranja do Algarve',			'Fruta',					321232343, '2017-11-11');
 
 INSERT INTO fornece_sec VALUES (123365789, 3456789032312); --fornecedor04 Iogurte aromas Agros
 INSERT INTO fornece_sec VALUES (123365789, 3496785072712); --fornecedor04 Maquina roupa X530-ABB
