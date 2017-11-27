@@ -15,24 +15,42 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        echo("<h3>Subcategorias de '$supercategoria':</h3>");
+        echo("<table>\n");
+
+        $sql = "SELECT categoria FROM constituida where super_categoria='$supercategoria';";
+        $result = $db->query($sql);
+
+        foreach($result as $row)
+        {
+            echo("<tr>\n");
+            echo("<td>{$row['categoria']}</td>\n");
+            echo("<td><a href=\"remove_subcat_warning.php?nome_categoria=$supercategoria&nome_subcategoria={$row['categoria']}\">Remover</a></td>\n");
+            echo("</tr>\n");
+        }
+
         $sql = "WITH RECURSIVE todas_subcategorias(super_categoria, categoria) AS (
-                    SELECT super_categoria, categoria FROM constituida WHERE super_categoria = 'supersuper'
+                    SELECT super_categoria, categoria FROM constituida WHERE super_categoria = '$supercategoria'
                     UNION ALL
                     SELECT c.super_categoria, c.categoria
                     FROM todas_subcategorias s, constituida c
                     WHERE c.super_categoria = s.categoria
                   )
                 SELECT categoria
-                FROM todas_subcategorias;";
+                FROM todas_subcategorias
+                WHERE categoria NOT IN (
+                    SELECT categoria
+                    FROM constituida
+                    WHERE super_categoria = '$supercategoria'
+                );";
         $result = $db->query($sql);
 
-        echo("<h3>Subcategorias de '$supercategoria':</h3>");
-        echo("<table>\n");
+        
         foreach($result as $row)
         {
             echo("<tr>\n");
             echo("<td>{$row['categoria']}</td>\n");
-            echo("<td><a href=\"remove_subcat_warning.php?nome_categoria=$supercategoria&nome_subcategoria={$row['categoria']}\">Remover</a></td>\n");
+            echo("<td style=\"text-align:center;\">-</td>\n");
             echo("</tr>\n");
         }
         echo("<tr>\n");

@@ -9,22 +9,42 @@ INSERT INTO categoria VALUES ('Maquinas de lavar roupa');
 INSERT INTO categoria VALUES ('Animais de estimacao');
 INSERT INTO categoria VALUES ('Comida de gato');
 INSERT INTO categoria VALUES ('Comida de cao');
+INSERT INTO categoria VALUES ('Pastelaria');
+INSERT INTO categoria VALUES ('Pao');
+INSERT INTO categoria VALUES ('Bolos');
+INSERT INTO categoria VALUES ('Bolos de anos');
+INSERT INTO categoria VALUES ('Pao de trigo');
+INSERT INTO categoria VALUES ('Pao de centeio');
+INSERT INTO categoria VALUES ('Pao de forma');
 
 INSERT INTO super_categoria VALUES ('Lacticineos');
 INSERT INTO super_categoria VALUES ('Produtos Higienicos');
 INSERT INTO super_categoria VALUES ('Fruta');
 INSERT INTO super_categoria VALUES ('Eletrodomesticos');
 INSERT INTO super_categoria VALUES ('Animais de estimacao');
+INSERT INTO super_categoria VALUES ('Pastelaria');
+INSERT INTO super_categoria VALUES ('Pao');
+INSERT INTO super_categoria VALUES ('Bolos');
 
 INSERT INTO categoria_simples VALUES ('Maquinas de cafe');
 INSERT INTO categoria_simples VALUES ('Maquinas de lavar roupa');
 INSERT INTO categoria_simples VALUES ('Comida de gato');
 INSERT INTO categoria_simples VALUES ('Comida de cao');
+INSERT INTO categoria_simples VALUES ('Pao de trigo');
+INSERT INTO categoria_simples VALUES ('Pao de centeio');
+INSERT INTO categoria_simples VALUES ('Pao de forma');
+INSERT INTO categoria_simples VALUES ('Bolos de anos');
 
 INSERT INTO constituida VALUES ('Animais de estimacao','Comida de cao');
 INSERT INTO constituida VALUES ('Animais de estimacao','Comida de gato');
 INSERT INTO constituida VALUES ('Eletrodomesticos','Maquinas de cafe');
 INSERT INTO constituida VALUES ('Eletrodomesticos','Maquinas de lavar roupa');
+INSERT INTO constituida VALUES ('Pastelaria', 'Pao');
+INSERT INTO constituida VALUES ('Pastelaria', 'Bolos');
+INSERT INTO constituida VALUES ('Pao', 'Pao de trigo');
+INSERT INTO constituida VALUES ('Pao', 'Pao de centeio');
+INSERT INTO constituida VALUES ('Pao', 'Pao de forma');
+INSERT INTO constituida VALUES ('Bolos', 'Bolos de anos');
 
 INSERT INTO fornecedor VALUES (010010010, 'Siemens');
 INSERT INTO fornecedor VALUES (111222333, 'Mimosa');
@@ -57,7 +77,7 @@ INSERT INTO produto VALUES (6456785069611, 'Laranja do Algarve',			'Fruta',					
 INSERT INTO fornece_sec VALUES (123365789, 3456789032312); --fornecedor04 Iogurte aromas Agros
 INSERT INTO fornece_sec VALUES (123365789, 3496785072712); --fornecedor04 Maquina roupa X530-ABB
 INSERT INTO fornece_sec VALUES (123365789, 2345678901231); --fornecedor04 Whiskas saquetas
-INSERT INTO fornece_sec VALUES (123365789, 3456485662912); --fornecedor04
+INSERT INTO fornece_sec VALUES (123365789, 3456485662912); --fornecedor04 Maca Royal Gala
 INSERT INTO fornece_sec VALUES (423835788, 3456485662912); --fornecedor09 Maca Royal Gala
 INSERT INTO fornece_sec VALUES (323150669, 3456485662912); --fornecedor07 Maca Royal Gala
 INSERT INTO fornece_sec VALUES (423453686, 3456485662912); --fornecedor05 Maca Royal Gala
