@@ -67,10 +67,7 @@
                 echo "<th colspan=3>Opções</th>\n";
                 echo "</tr>\n";
                 $sql = "SELECT * 
-                        FROM categoria
-                        WHERE nome NOT IN (
-                            SELECT nome 
-                            FROM categoria_simples)
+                        FROM super_categoria
                         ORDER BY nome;";
                 $result = $db->query($sql);
                 foreach($result as $row)
@@ -87,6 +84,8 @@
                             SELECT nome 
                             FROM super_categoria)
                         ORDER BY nome;";
+
+                // Supposedly the same as "SELECT * FROM categoria_simples GROUP BY nome" but it's safer this way.
                 $result = $db->query($sql);
                 foreach($result as $row)
                 {
