@@ -36,7 +36,7 @@
 
                 foreach($result as $row) {
                     echo("<tr>\n");
-                    echo("<td><a href=update_forn_prim_produto.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>{$row['nif']}</a></td>\n");
+                    echo("<td><a href=update_forn_prim_prod.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>{$row['nif']}</a></td>\n");
                     echo("<td>{$row['nome']}</td>\n");
                     echo("</tr>\n");
                 }
@@ -48,7 +48,7 @@
                 foreach($result as $row)
                 {
                     echo("<tr>\n");
-                    echo("<td><a href=update_forn_prim_produto.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>{$row['nif']}</a></td>\n");
+                    echo("<td><a href=update_forn_prim_prod.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>{$row['nif']}</a></td>\n");
                     echo("<td>{$row['nome']}</td>\n");
                     echo("</tr>\n");
                 }

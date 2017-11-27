@@ -117,7 +117,7 @@
                     echo("<tr>\n");
                     echo("<td>{$row['nif']}</td>\n");
                     echo("<td>{$row['nome']}</td>\n");
-                    echo("<td><a href=\"remove_fornecedor_warning.php?nif={$row['nif']}&nome={$row['nome']}\">Remover</a></td>\n");
+                    echo("<td><a href=\"remove_forn_warning.php?nif={$row['nif']}&nome={$row['nome']}\">Remover</a></td>\n");
                     echo("</tr>\n");
                 }
                 echo("<tr>\n");

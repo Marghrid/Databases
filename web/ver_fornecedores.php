@@ -60,7 +60,7 @@
                 echo("<td><a href=\"remove_forn_secundario.php?forn_prim=$forn_prim&forn_sec={$row['nif']}&ean=$ean&design=$design\">Remover</a></td>\n");
                 echo("</tr>\n");
             }
-            echo("<tr>\n<td colspan=3><p><a href=\"adicionar_forn_secundario.php?forn_prim=$forn_prim&ean=$ean&design=$design\">Adicionar Fornecedor Secundário</p></td>\n</tr>\n");
+            echo("<tr>\n<td colspan=3><p><a href=\"adicionar_forn_sec.php?forn_prim=$forn_prim&ean=$ean&design=$design\">Adicionar Fornecedor Secundário</p></td>\n</tr>\n");
             echo("</table>\n");
 
             $db = null;
