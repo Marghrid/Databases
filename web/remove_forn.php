@@ -16,11 +16,52 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = "DELETE FROM fornecedor WHERE nif='$nif';";
-                echo("<p>Removing $nif:</p>");
-                echo("<p>$sql</p>");
+                $db->query("begin transaction;");
 
-                $db->query($sql);
+                $sql = "SELECT COUNT(*) AS count FROM produto WHERE forn_primario='$nif';";
+
+                $result = $db->query($sql);
+                foreach($result as $row)
+                {
+                    $count = $row['count'];
+                }
+                
+                if($count>0)
+                {
+                    $sql = "SELECT ean, design FROM produto WHERE forn_primario='$nif';";
+                    echo("<p>O fornecedor não pode ser removido porque é fornecedor primário de:</p>\n");
+                    $result = $db->query($sql);
+
+                    echo("<table>\n");
+                    echo("<tr>\n");
+                    echo("<th>EAN</th>\n");
+                    echo("<th>Designação</th>\n");
+                    echo("</tr>\n");
+                    foreach($result as $row)
+                    {
+                        echo("<tr>\n");
+                        echo("<td>{$row['ean']}</td>\n");
+                        echo("<td>{$row['design']}</td>\n");
+                        echo("</tr>\n");
+                    }
+                    echo("</table>\n");
+                }
+                else
+                {
+                    $sql = "DELETE FROM fornece_sec WHERE nif='$nif';";
+                    
+                    echo("<p>Trying to remove $nif from fornece_sec:</p>");
+                    echo("<p>$sql</p>");
+                    $db->query($sql);
+
+                    $sql = "DELETE FROM fornecedor WHERE nif='$nif';";
+
+                    echo("<p>Trying to remove $nif from fornecedor:</p>");
+                    echo("<p>$sql</p>");
+
+                    $db->query($sql);
+                }
+                $db->query("commit;");
 
                 $db = null;
             }
