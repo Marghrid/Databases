@@ -46,9 +46,9 @@
                     echo("<td>{$row['data']}</td>\n");
 
                     echo("<td><a href=\"alterar_designacao.php?ean={$row['ean']}&design={$row['design']}\">Alterar designação</a></td>\n");
-                    echo("<td><a href=\"alterar_fornecedores.php?ean={$row['ean']}&design={$row['design']}&forn_prim={$row['forn_primario']}\">Alterar fornecedores</a></td>\n");
+                    echo("<td><a href=\"ver_fornecedores.php?ean={$row['ean']}&design={$row['design']}&forn_prim={$row['forn_primario']}\">Ver fornecedores</a></td>\n");
                     echo("<td><a href=\"ver_reposicoes.php?ean={$row['ean']}&design={$row['design']}\">Ver reposições</a></td>\n");
-                    echo("<td><a href=\"remove_warning_prod.php?ean={$row['ean']}&design={$row['design']}\">Remover Produto</a></td>\n");
+                    echo("<td><a href=\"remove_warning_prod.php?ean={$row['ean']}&design={$row['design']}\">Remover</a></td>\n");
                     
                     echo("</tr>\n");
                 }
@@ -96,7 +96,7 @@
                     echo("</tr>\n");
                 }
                 echo("<tr>\n");
-                echo("<td colspan=3><a href=\"nova_categoria.php\"><b>Adicionar nova</b></a></td>\n");
+                echo("<td colspan=3><a href=\"nova_categoria.php\"><b>Adicionar categoria</b></a></td>\n");
                 echo("</tr>\n");
                 echo("</table>\n");
 

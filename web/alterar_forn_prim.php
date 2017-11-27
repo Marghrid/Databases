@@ -29,15 +29,15 @@
                 $result = $db->query($sql);
 
                 echo("<table>\n");
+                echo("<tr>\n");
                 echo("<th>NIF</th>\n");
                 echo("<th>Nome</th>\n");
-                echo("<th>Opções</th>\n");
-                foreach($result as $row)
-                {
+                echo("</tr>\n");
+
+                foreach($result as $row) {
                     echo("<tr>\n");
-                    echo("<td>{$row['nif']}</td>\n");
+                    echo("<td><a href=update_forn_prim_produto.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>{$row['nif']}</a></td>\n");
                     echo("<td>{$row['nome']}</td>\n");
-                    echo("<td><a href=update_forn_prim_produto.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>Escolher</a></td>\n");
                     echo("</tr>\n");
                 }
                 $sql = "SELECT *
@@ -48,9 +48,8 @@
                 foreach($result as $row)
                 {
                     echo("<tr>\n");
-                    echo("<td>{$row['nif']}</td>\n");
+                    echo("<td><a href=update_forn_prim_produto.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>{$row['nif']}</a></td>\n");
                     echo("<td>{$row['nome']}</td>\n");
-                    echo("<td><a href=update_forn_prim_produto.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=yes>Escolher</a>&nbsp(vai ser removido de secundário)</td>\n");
                     echo("</tr>\n");
                 }
                 echo("</table>\n");
