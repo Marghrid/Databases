@@ -34,6 +34,9 @@
                     subcategoria de $supercategoria?</h3>");
 
                 echo("<table>\n");
+                echo("<tr>\n");
+                echo("<th>Nome</th>\n");
+                echo("</tr>\n");
                 foreach($result as $row)
                 {
                     echo("<tr>\n");

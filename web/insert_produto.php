@@ -17,12 +17,14 @@
                 $dbname = $user;
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-                $sql = "INSERT INTO produto VALUES ($ean, '$design', '$categoria', $fornecedor, CURRENT_DATE);";
+                //$sql = "INSERT INTO produto VALUES ($ean, '$design', '$categoria', $fornecedor, CURRENT_DATE);";
+                $sql = "INSERT INTO produto VALUES (?, ?, ?, ?, CURRENT_DATE);";
+                $db->prepare($sql);
+                echo("<p>INSERT INTO produto VALUES ($ean, '$design', '$categoria', $fornecedor, Data atual)</p>");
+                $db->execute(array($ean, $design, $categoria, $fornecedor));
                 echo("<p>Adicionar novo produto $design (EAN = $ean):</p>");
-                echo("<p>$sql</p>");
         
-                $db->query($sql);
+                //$db->query($sql);
         
                 $db = null;
             }

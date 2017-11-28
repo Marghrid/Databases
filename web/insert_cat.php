@@ -18,24 +18,32 @@
 
                 $db->query("begin transaction;");
 
-                $sql = "INSERT INTO categoria VALUES ('$nome_cat');";
-                $db->query($sql);
+                $sql = 'INSERT INTO categoria VALUES (?);';
+                $prep1 = $db->prepare($sql);
 
-                echo("<p>Adicionar nova categoria '$nome_cat':</p>");
-                echo("<p>$sql</p>");
+                echo("<p>Trying to add '$nome_cat' to categoria:</p>");
+                echo("<p>INSERT INTO categoria VALUES ('$nome_cat');</p>");
+                $prep1->execute(array($nome_cat));
+
 
                 if($is_supercat == "yes")
                 {
-                    $sql= "INSERT INTO super_categoria VALUES ('$nome_cat');";
-                    echo("<p>Adicionar nova supercategoria '$nome_cat':</p>");
+                    $sql = 'INSERT INTO super_categoria VALUES (?);';
+                    $prep2 = $db->prepare($sql);
+                    
+                    echo("<p>Trying to add '$nome_cat' to super_categoria:</p>");
+                    echo("<p>INSERT INTO categoria VALUES ('$nome_cat');</p>");
+                    $prep2->execute(array($nome_cat));
                 }
                 else
                 {
-                    $sql= "INSERT INTO categoria_simples VALUES ('$nome_cat');";
-                    echo("<p>Adicionar nova categoria simples '$nome_cat':</p>");
-                }
-                echo("<p>$sql</p>");        
-                $db->query($sql);
+                    $sql = 'INSERT INTO categoria_simples VALUES (?);';
+                    $prep2 = $db->prepare($sql);
+
+                    echo("<p>Trying to add '$nome_cat' to categoria_simples:</p>");
+                    echo("<p>INSERT INTO categoria VALUES ('$nome_cat');</p>");
+                    $prep2->execute(array($nome_cat));
+                }       
 
                 $db->query("commit;");
 

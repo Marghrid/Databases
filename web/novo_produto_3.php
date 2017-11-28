@@ -20,12 +20,16 @@
         
                 // Mostrar todos os fornecedores que o produto pode ter como primario:
                 $sql = "SELECT * FROM fornecedor;";
-        
+                
                 $result = $db->query($sql);
         
                 echo("<h3>Qual o fornecedor primaria de $design (EAN = $ean)?</h3>");
         
                 echo("<table>\n");
+                echo("<tr>\n");
+                echo("<th>NIF</th>\n");
+				echo("<th>Nome</th>\n");
+				echo("</tr>\n");
                 foreach($result as $row)
                 {
                     echo("<tr>\n");

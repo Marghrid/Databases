@@ -23,9 +23,12 @@
 		
 		        $result = $db->query($sql);
 		
-		        echo("<h3>A que categoria pertence $design (EAN = $ean)?</h3>");
-		
-		        echo("<table>\n");
+				echo("<h3>A que categoria pertence $design (EAN = $ean)?</h3>");
+				
+				echo("<table>\n");
+				echo("<tr>\n");
+				echo("<th>Nome</th>\n");
+				echo("</tr>\n");
 		        foreach($result as $row)
 		        {
 		            echo("<tr>\n");

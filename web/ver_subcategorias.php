@@ -20,7 +20,10 @@
 
         $sql = "SELECT categoria FROM constituida where super_categoria='$supercategoria';";
         $result = $db->query($sql);
-
+        echo("<tr>\n");
+        echo("<th>Categoria</th>\n");
+        echo("<th>Opções</th>\n");
+        echo("</tr>\n");
         foreach($result as $row)
         {
             echo("<tr>\n");

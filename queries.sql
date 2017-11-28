@@ -3,7 +3,7 @@
 -- a) Qual o nome do fornecedor que forneceu o maior número de categorias?
 --    Note que pode ser mais do que um fornecedor.
 
--- uso de left join em vez de natural join necessario para o caso em que o maximo = 0.
+-- uso de left join em vez de natural join necessario para o caso em que o maximo e 0 (.
 --SELECT nif, nome FROM tabela
 --WHERE prims + secs = (SELECT MAX(prims + secs) FROM tabela)
 SELECT nif, nome
@@ -35,7 +35,9 @@ WHERE prims + secs =
 
 -- b) Quais os fornecedores primarios (nome e nif) que forneceram produtos de
 --    todas as categorias simples?
-
+SELECT nif, nome
+FROM fornecedor
+WHERE nif = (subquery com ALL?)
 
 -- c) Quais os produtos (ean) que nunca foram repostos?
 SELECT ean
