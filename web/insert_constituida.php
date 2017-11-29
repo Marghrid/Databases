@@ -18,15 +18,15 @@
 
                 $db->beginTransaction();
                 $sql = "SELECT COUNT(nome)
-                    FROM categoria_simples
-                    WHERE nome='$supercat'
-                    GROUP BY nome;";
+                        FROM categoria_simples
+                        WHERE nome = '$supercat';";
                 $result =  $db->query($sql);
                 $count = $result->fetchColumn();
+                echo "$count";
                 
                 if($count > 0) {
                     echo("<p>$supercat está registada como categoria simples.</p>");
-                    $sql = "DELETE FROM categoria_simples WHERE nome='$subcat';";
+                    $sql = "DELETE FROM categoria_simples WHERE nome='$supercat';";
                     echo("<p>Apagar $supercat de categoria_simples:</p>");
                     echo("<p>$sql</p>");
                     $db->query($sql);
