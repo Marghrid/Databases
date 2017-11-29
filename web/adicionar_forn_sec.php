@@ -18,7 +18,7 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                echo("<h3>Que fornecedor secundário pertende adicionar ao produto 
+                echo("<h3>Que fornecedor secundário pretende adicionar ao produto 
                     (EAN = $ean, designação = '$design'):</h3>");
 
 

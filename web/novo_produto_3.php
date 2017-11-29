@@ -23,7 +23,7 @@
                 
                 $result = $db->query($sql);
         
-                echo("<h3>Qual o fornecedor primaria de $design (EAN = $ean)?</h3>");
+                echo("<h3>Qual o fornecedor primário de '$design' (EAN = $ean)?</h3>");
         
                 echo("<table>\n");
                 echo("<tr>\n");
@@ -34,7 +34,7 @@
                 {
                     echo("<tr>\n");
                     echo("<td>
-                            <a href=\"insert_produto.php?categoria=$categoria&ean=$ean&design=$design&fornecedor={$row['nif']}\">
+                            <a href=\"novo_produto_4.php?categoria=$categoria&ean=$ean&design=$design&forn_prim={$row['nif']}\">
                                 {$row['nif']}
                             </a>
                         </td>\n");
@@ -50,7 +50,8 @@
             {
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
-            echo("<p><a href=\"supermercado.php\">Cancelar</a></p>");
+            echo("<p><a href=\"novo_produto_2.php?categoria=$categoria&ean=$ean&design=$design\">Anterior</a>
+            &nbsp <a href=\"supermercado.php\">Cancelar</a></p>");
         
         ?>
     </body>

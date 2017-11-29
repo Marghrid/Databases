@@ -23,7 +23,7 @@
 		
 		        $result = $db->query($sql);
 		
-				echo("<h3>A que categoria pertence $design (EAN = $ean)?</h3>");
+				echo("<h3>A que categoria pertence '$design' (EAN = $ean)?</h3>");
 				
 				echo("<table>\n");
 				echo("<tr>\n");
@@ -50,8 +50,8 @@
 		    {
 		        echo("<p>ERROR: {$e->getMessage()}</p>");
 		    }
-		    echo("<p><a href=\"supermercado.php\">Cancelar</a></p>");
-		
+            echo("<p><a href=\"novo_produto_1.php?ean=$ean&design=$design\">Anterior</a>
+            &nbsp <a href=\"supermercado.php\">Cancelar</a></p>");		
 		?>
     </body>
 </html>
