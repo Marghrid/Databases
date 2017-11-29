@@ -20,17 +20,21 @@
         
                 // Mostrar todos os fornecedores que o produto pode ter como primario:
                 $sql = "SELECT * FROM fornecedor;";
-        
+                
                 $result = $db->query($sql);
-        
+
                 echo("<h3>Qual o fornecedor primário de $design (EAN = $ean)?</h3>");
         
                 echo("<table>\n");
+                echo("<tr>\n");
+                echo("<th>NIF</th>\n");
+				echo("<th>Nome</th>\n");
+				echo("</tr>\n");
                 foreach($result as $row)
                 {
                     echo("<tr>\n");
                     echo("<td>
-                            <a href=\"insert_produto.php?categoria=$categoria&ean=$ean&design=$design&fornecedor={$row['nif']}\">
+                            <a href=\"novo_produto_4.php?categoria=$categoria&ean=$ean&design=$design&forn_prim={$row['nif']}\">
                                 {$row['nif']}
                             </a>
                         </td>\n");
@@ -46,7 +50,8 @@
             {
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
-            echo("<p><a href=\"supermercado.php\">Cancelar</a></p>");
+            echo("<p><a href=\"novo_produto_2.php?categoria=$categoria&ean=$ean&design=$design\">Anterior</a>
+            &nbsp <a href=\"supermercado.php\">Cancelar</a></p>");
         
         ?>
     </body>

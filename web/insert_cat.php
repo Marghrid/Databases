@@ -17,11 +17,11 @@
 
                 $db->query("begin transaction;");
 
-                $sql = "INSERT INTO categoria VALUES ('$nome_cat');";
-                $db->query($sql);
-
-                echo("<p>Adicionar nova categoria '$nome_cat':</p>");
-                echo("<p>$sql</p>");
+                $sql = 'INSERT INTO categoria VALUES (?);';
+                $prep1 = $db->prepare($sql);
+                echo("<p>Adicionar '$nome_cat' a categoria:</p>");
+                echo("<p>INSERT INTO categoria VALUES ('$nome_cat');</p>");
+                $prep1->execute(array($nome_cat));
 
                 $sql= "INSERT INTO categoria_simples VALUES ('$nome_cat');";
                 echo("<p>Adicionar nova categoria simples '$nome_cat':</p>");

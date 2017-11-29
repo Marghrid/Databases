@@ -8,7 +8,8 @@
             $ean        = $_REQUEST['ean'];
             $design     = $_REQUEST['design'];
             $categoria  = $_REQUEST['categoria'];
-            $fornecedor = $_REQUEST['fornecedor'];
+            $forn_prim = $_REQUEST['forn_prim'];
+            $forn_sec = $_REQUEST['forn_sec'];
             try
             {
                 $host = "db.ist.utl.pt";
@@ -17,13 +18,25 @@
                 $dbname = $user;
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-                $sql = "INSERT INTO produto VALUES ($ean, '$design', '$categoria', $fornecedor, CURRENT_DATE);";
-                echo("<p>Adicionar novo produto $design (EAN = $ean):</p>");
-                echo("<p>$sql</p>");
-        
+
+                $db->query("begin transaction;");
+
+                $sql = "INSERT INTO produto VALUES (?, ?, ?, ?, CURRENT_DATE);";
+                $prep = $db->prepare($sql);
+
+                echo("<p>Adicionando novo produto '$design' (EAN = $ean):</p>");
+
+                $prep->execute(array($ean, $design, $categoria, $forn_prim));
+                echo("<p>INSERT INTO produto VALUES ($ean, '$design', '$categoria', $forn_prim, Data atual);</p>");
+
+                
+                $sql = "INSERT INTO fornece_sec VALUES ($forn_sec, $ean);";
+                
+                echo("<p>Adicionando novo fornecedor secundário para o produto $design (EAN = $ean):</p>");
                 $db->query($sql);
-        
+                echo("<p>$sql</p>");
+
+                $db->query("commit;");
                 $db = null;
             }
             catch (PDOException $e)

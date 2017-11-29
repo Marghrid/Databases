@@ -18,7 +18,7 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                echo("<h3>Que fornecedor secundário pertende adicionar ao produto 
+                echo("<h3>Que fornecedor secundário pretende adicionar ao produto 
                     (EAN = $ean, designação = '$design'):</h3>");
 
 
@@ -46,7 +46,7 @@
             {
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
-            echo("<p><a href=\"alterar_fornecedores.php?ean=$ean&design=$design&forn_prim=$forn_prim\"> Voltar</a></p>");
+            echo("<p><a href=\"ver_fornecedores.php?forn_prim=$forn_prim&ean=$ean&design=$design\"> Voltar</a></p>");
             echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
         ?>
     </body>
