@@ -16,12 +16,32 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+                $db->beginTransaction();
+                $sql = "SELECT COUNT(nome)
+                    FROM categoria_simples
+                    WHERE nome='$supercat'
+                    GROUP BY nome;";
+                $result =  $db->query($sql);
+                $count = $result->fetchColumn();
+                
+                if($count > 0) {
+                    echo("<p>$supercat está registada como categoria simples.</p>");
+                    $sql = "DELETE FROM categoria_simples WHERE nome='$subcat';";
+                    echo("<p>Apagar $supercat de categoria_simples:</p>");
+                    echo("<p>$sql</p>");
+                    $db->query($sql);
+    
+                    $sql = "INSERT INTO super_categoria VALUES ('$supercat');";
+                    echo("<p>Adicionar $supercat a super_categoria:</p>");
+                    echo("<p>$sql</p>");
+                    $db->query($sql);
+                }
+
                 $sql = "INSERT INTO constituida VALUES ('$supercat', '$subcat');";
                 echo("<p>Adicionar nova subcategoria $subcat a $supercat:</p>");
                 echo("<p>$sql</p>");
-
                 $db->query($sql);
-
+                $db->commit();
                 $db = null;
             }
             catch (PDOException $e)

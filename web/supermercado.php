@@ -67,7 +67,7 @@
                 echo "<th colspan=2>Opções</th>\n";
                 echo "</tr>\n";
                 $sql = "SELECT * 
-                        FROM super_categoria
+                        FROM categoria
                         ORDER BY nome;";
                 $result = $db->query($sql);
                 foreach($result as $row)
@@ -76,23 +76,6 @@
                     echo("<td>{$row['nome']}</td>\n");
                     echo("<td><a href=\"remove_warning_cat.php?nome_categoria={$row['nome']}\">Remover</a></td>\n");
                     echo("<td><a href=\"ver_subcategorias.php?nome_categoria={$row['nome']}\">Ver subcategorias</a></td>\n");
-                    echo("</tr>\n");
-                }
-                $sql = "SELECT * 
-                        FROM categoria
-                        WHERE nome NOT IN (
-                            SELECT nome 
-                            FROM super_categoria)
-                        ORDER BY nome;";
-
-                // Supposedly the same as "SELECT * FROM categoria_simples GROUP BY nome" but it's safer this way.
-                $result = $db->query($sql);
-                foreach($result as $row)
-                {
-                    echo("<tr>\n");
-                    echo("<td>{$row['nome']}</td>\n");
-                    echo("<td><a href=\"remove_warning_cat.php?nome_categoria={$row['nome']}\">Remover</a></td>\n");
-                    echo("<td style=\"text-align:center;\">-</td>\n");
                     echo("</tr>\n");
                 }
                 echo("<tr>\n");

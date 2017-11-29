@@ -6,7 +6,6 @@
     <body>
         <?php
             $nome_cat = $_REQUEST['nome_cat'];
-            $is_supercat = $_REQUEST['is_supercat'];
             try
             {
                 $host = "db.ist.utl.pt";
@@ -24,16 +23,9 @@
                 echo("<p>Adicionar nova categoria '$nome_cat':</p>");
                 echo("<p>$sql</p>");
 
-                if($is_supercat == "yes")
-                {
-                    $sql= "INSERT INTO super_categoria VALUES ('$nome_cat');";
-                    echo("<p>Adicionar nova supercategoria '$nome_cat':</p>");
-                }
-                else
-                {
-                    $sql= "INSERT INTO categoria_simples VALUES ('$nome_cat');";
-                    echo("<p>Adicionar nova categoria simples '$nome_cat':</p>");
-                }
+                $sql= "INSERT INTO categoria_simples VALUES ('$nome_cat');";
+                echo("<p>Adicionar nova categoria simples '$nome_cat':</p>");
+                
                 echo("<p>$sql</p>");        
                 $db->query($sql);
 

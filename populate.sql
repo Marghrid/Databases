@@ -1,54 +1,63 @@
 /* populate.sql: Ficheiro com instruções para popular as tabelas com dados de teste.  */
 
 INSERT INTO categoria VALUES 
-('Lacticinios'),
-('Produtos Higienicos'),
+('Lacticinio'),
+('Produto Higienico'),
 ('Fruta'),
-('Eletrodomesticos'),
-('Maquinas de cafe'),
-('Maquinas de lavar roupa'),
+('Eletrodomestico'),
+('Maquina de cafe'),
+('Maquina de lavar roupa'),
 ('Animais de estimacao'),
 ('Comida de gato'),
 ('Comida de cao'),
 ('Pastelaria'),
 ('Pao'),
-('Bolos'),
-('Bolos de anos'),
+('Bolo'),
+('Bolo de anos'),
 ('Pao de trigo'),
 ('Pao de centeio'),
-('Pao de forma');
+('Pao de forma'),
+('Leite'),
+('Iogurte'),
+('Queijo');
 
 INSERT INTO super_categoria VALUES
-('Lacticinios'),
-('Produtos Higienicos'),
-('Fruta'),
-('Eletrodomesticos'),
+('Lacticinio'),
+('Eletrodomestico'),
 ('Animais de estimacao'),
 ('Pastelaria'),
 ('Pao'),
-('Bolos');
+('Bolo');
 
 INSERT INTO categoria_simples VALUES
-('Maquinas de cafe'),
-('Maquinas de lavar roupa'),
+('Produto Higienico'),
+('Fruta'),
+('Maquina de cafe'),
+('Maquina de lavar roupa'),
 ('Comida de gato'),
 ('Comida de cao'),
 ('Pao de trigo'),
 ('Pao de centeio'),
 ('Pao de forma'),
-('Bolos de anos');
+('Bolo de anos'),
+('Leite'),
+('Iogurte'),
+('Queijo');
 
 INSERT INTO constituida VALUES
 ('Animais de estimacao', 'Comida de cao'),
 ('Animais de estimacao', 'Comida de gato'),
-('Eletrodomesticos', 'Maquinas de cafe'),
-('Eletrodomesticos', 'Maquinas de lavar roupa'),
+('Eletrodomestico', 'Maquina de cafe'),
+('Eletrodomestico', 'Maquina de lavar roupa'),
 ('Pastelaria', 'Pao'),
-('Pastelaria', 'Bolos'),
+('Pastelaria', 'Bolo'),
 ('Pao', 'Pao de trigo'),
 ('Pao', 'Pao de centeio'),
 ('Pao', 'Pao de forma'),
-('Bolos', 'Bolos de anos');
+('Bolo', 'Bolo de anos'),
+('Lacticinio', 'Leite'),
+('Lacticinio', 'Iogurte'),
+('Lacticinio', 'Queijo');
 
 INSERT INTO fornecedor VALUES
 (010010010, 'Siemens'),
@@ -68,13 +77,13 @@ INSERT INTO fornecedor VALUES
 (123000759, 'fornecedor10');
 
 INSERT INTO produto VALUES
-(1234567890123, 'Delta Q SuperExpress', 		'Maquinas de cafe',		 	323556789, '2017-01-11'),
+(1234567890123, 'Delta Q SuperExpress', 		'Maquina de cafe',		 	323556789, '2017-01-11'),
 (2345678901231, 'Whiskas saquetas',     		'Comida de gato',  		 	131242353, '2016-08-12'),
-(3456789012312, 'Leite meio gordo Mimosa',     	'Lacticinios',     		 	111222333, '2017-06-11'),
-(3456789032312, 'Iogurte aromas Agros',    		'Lacticinios',    		  	423453686, '2016-03-11'),
-(3456785062712, 'Queijo da Serra da Estrela',   'Lacticinios',     		 	321232343, '2017-09-11'),
-(3356485562712, 'Siemens SuperClothesCleaner',	'Maquinas de lavar roupa',	010010010, '2015-04-11'),
-(3496785072712, 'Maquina roupa X530-ABB',		'Maquinas de lavar roupa',	224456789, '2015-10-11'),
+(3456789012312, 'Leite meio gordo Mimosa',     	'Leite',     			 	111222333, '2017-06-11'),
+(3456789032312, 'Iogurte aromas Agros',    		'Iogurte',    			  	423453686, '2016-03-11'),
+(3456785062712, 'Queijo da Serra da Estrela',   'Queijo',     			 	321232343, '2017-09-11'),
+(3356485562712, 'Siemens SuperClothesCleaner',	'Maquina de lavar roupa',	010010010, '2015-04-11'),
+(3496785072712, 'Maquina roupa X530-ABB',		'Maquina de lavar roupa',	224456789, '2015-10-11'),
 (3456485662912, 'Maca Royal Gala',				'Fruta',					321232343, '2016-02-11'),
 (3456785056712, 'Pera Rocha',					'Fruta',					321232343, '2015-07-11'),
 (2456385062612, 'Clementina XPTO',				'Fruta',					321232343, '2015-05-11'),

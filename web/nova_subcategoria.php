@@ -26,7 +26,8 @@
                             AND nome NOT IN (
                                 SELECT categoria 
                                 FROM constituida 
-                                WHERE super_categoria = '$supercategoria');";
+                                WHERE super_categoria = '$supercategoria')
+                        ORDER BY nome;";
 
                 $result = $db->query($sql);
 

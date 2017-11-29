@@ -17,17 +17,41 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = "DELETE FROM constituida WHERE categoria='$nome_subcategoria';";
+                $db->beginTransaction(); 
+
+                // Nome da subcategoria de $nome_categoria se só houver uma.
+                $sql = "SELECT COUNT(categoria)
+                        FROM constituida
+                        WHERE super_categoria = '$nome_categoria'
+                        GROUP BY super_categoria;";
+                $result = $db->query($sql);
+                $count = $result->fetchColumn();
+                
+                $sql = "DELETE FROM constituida WHERE super_categoria='$nome_categoria' AND categoria = '$nome_subcategoria';";
                 echo("<p>Removing '$nome_subcategoria' from '$nome_categoria':</p>");
                 echo("<p>$sql</p>");
-
                 $db->query($sql);
 
+                if($count == 1) {
+                    echo("<p>$nome_subcategoria era a única subcategoria de $nome_categoria:</p>");
+
+                    $sql = "DELETE FROM super_categoria WHERE nome='$nome_categoria';";
+                    echo("<p>Removing '$nome_categoria' from super_categoria:</p>");
+                    echo("<p>$sql</p>");
+                    $db->query($sql);
+
+                    $sql = "INSERT INTO categoria_simples VALUES ('$nome_categoria');";
+                    echo("<p>Inserting '$nome_categoria' into categoria_simples:</p>");
+                    echo("<p>$sql</p>");
+                    $db->query($sql);
+                }
+
+                $db->commit();
                 $db = null;
             }
             catch (PDOException $e)
             {
-                $db->query("rollback;");
+                $db->rollBack();    
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             echo("<p><a href=\"supermercado.php\">Ver supermercado</a> &nbsp 
