@@ -1,7 +1,7 @@
 /* populate.sql: Ficheiro com instruções para popular as tabelas com dados de teste.  */
 
 INSERT INTO categoria VALUES 
-('Lacticineos'),
+('Lacticinios'),
 ('Produtos Higienicos'),
 ('Fruta'),
 ('Eletrodomesticos'),
@@ -19,7 +19,7 @@ INSERT INTO categoria VALUES
 ('Pao de forma');
 
 INSERT INTO super_categoria VALUES
-('Lacticineos'),
+('Lacticinios'),
 ('Produtos Higienicos'),
 ('Fruta'),
 ('Eletrodomesticos'),
@@ -39,10 +39,10 @@ INSERT INTO categoria_simples VALUES
 ('Bolos de anos');
 
 INSERT INTO constituida VALUES
-('Animais de estimacao','Comida de cao'),
-('Animais de estimacao','Comida de gato'),
-('Eletrodomesticos','Maquinas de cafe'),
-('Eletrodomesticos','Maquinas de lavar roupa'),
+('Animais de estimacao', 'Comida de cao'),
+('Animais de estimacao', 'Comida de gato'),
+('Eletrodomesticos', 'Maquinas de cafe'),
+('Eletrodomesticos', 'Maquinas de lavar roupa'),
 ('Pastelaria', 'Pao'),
 ('Pastelaria', 'Bolos'),
 ('Pao', 'Pao de trigo'),
@@ -70,9 +70,9 @@ INSERT INTO fornecedor VALUES
 INSERT INTO produto VALUES
 (1234567890123, 'Delta Q SuperExpress', 		'Maquinas de cafe',		 	323556789, '2017-01-11'),
 (2345678901231, 'Whiskas saquetas',     		'Comida de gato',  		 	131242353, '2016-08-12'),
-(3456789012312, 'Leite meio gordo Mimosa',     	'Lacticineos',     		 	111222333, '2017-06-11'),
-(3456789032312, 'Iogurte aromas Agros',    		'Lacticineos',    		  	423453686, '2016-03-11'),
-(3456785062712, 'Queijo da Serra da Estrela',   'Lacticineos',     		 	321232343, '2017-09-11'),
+(3456789012312, 'Leite meio gordo Mimosa',     	'Lacticinios',     		 	111222333, '2017-06-11'),
+(3456789032312, 'Iogurte aromas Agros',    		'Lacticinios',    		  	423453686, '2016-03-11'),
+(3456785062712, 'Queijo da Serra da Estrela',   'Lacticinios',     		 	321232343, '2017-09-11'),
 (3356485562712, 'Siemens SuperClothesCleaner',	'Maquinas de lavar roupa',	010010010, '2015-04-11'),
 (3496785072712, 'Maquina roupa X530-ABB',		'Maquinas de lavar roupa',	224456789, '2015-10-11'),
 (3456485662912, 'Maca Royal Gala',				'Fruta',					321232343, '2016-02-11'),
