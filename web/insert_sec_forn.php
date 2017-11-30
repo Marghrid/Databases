@@ -23,17 +23,18 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = "INSERT INTO fornece_sec VALUES ('$forn_sec','$ean');";
-                echo("<p>Adicionar o fornecedor secundário '$forn_sec' ao produto(ean = $ean)</p>");
+                $sql = "INSERT INTO fornece_sec VALUES (?,?);";
+                $prep = $db->prepare($sql);
+
+                echo("<p>Adicionar <b>'$forn_sec'</b> como fornecedor secundário do produto <b>$design</b>(ean = <b>$ean</b>)</p>");
                 echo("<p>$sql</p>");
 
-                $db->query($sql);
+                $prep->execute(array($nif, $ean));
 
                 $db = null;
             }
             catch (PDOException $e)
             {
-                $db->query("rollback;");
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
             echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");

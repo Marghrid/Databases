@@ -18,17 +18,17 @@
                 $db->query("begin transaction;");
 
                 $sql = 'INSERT INTO categoria VALUES (?);';
-                $prep1 = $db->prepare($sql);
-                echo("<p>Adicionar '$nome_cat' a categoria:</p>");
+                $prep = $db->prepare($sql);
+                echo("<p>Adicionar nova categoria </b>$nome_cat</b>;</p>");
                 echo("<p>INSERT INTO categoria VALUES ('$nome_cat');</p>");
-                $prep1->execute(array($nome_cat));
+                $prep->execute(array($nome_cat));
 
-                $sql= "INSERT INTO categoria_simples VALUES ('$nome_cat');";
-                echo("<p>Adicionar nova categoria simples '$nome_cat':</p>");
+                $sql = 'INSERT INTO categoria_simples VALUES (?);';
+                $prep = $db->prepare($sql);
+                echo("<p>Adicionar nova categoria simples </b>$nome_cat</b>:</p>");
+                echo("<p>INSERT INTO categoria_simples VALUES ('$nome_cat');</p>");
+                $prep->execute(array($nome_cat));
                 
-                echo("<p>$sql</p>");        
-                $db->query($sql);
-
                 $db->query("commit;");
 
                 $db = null;

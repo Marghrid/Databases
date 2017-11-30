@@ -19,13 +19,12 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 echo("<h3>Qual deverá ser o novo fornecedor primário 
-                    do produto (EAN = $ean, designação = '$design', fornecedor primário atual = '$forn_prim'):</h3>");
-
+                    de <b>$design</b> (EAN = <b>$ean</b>, fornecedor primário atual = <b>$forn_prim</b>)?</h3>");
 
                 $sql = "SELECT * 
                         FROM  fornecedor
                         WHERE (nif NOT IN (SELECT nif FROM fornece_sec WHERE ean='$ean'))
-                         AND (nif != $forn_prim);";
+                            AND (nif != $forn_prim);";
                 $result = $db->query($sql);
 
                 echo("<table>\n");
@@ -48,7 +47,7 @@
                 foreach($result as $row)
                 {
                     echo("<tr>\n");
-                    echo("<td><a href=update_forn_prim_prod.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=no>{$row['nif']}</a></td>\n");
+                    echo("<td><a href=update_forn_prim_prod.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=yes>{$row['nif']}</a></td>\n");
                     echo("<td>{$row['nome']}</td>\n");
                     echo("</tr>\n");
                 }

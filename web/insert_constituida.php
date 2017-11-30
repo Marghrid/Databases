@@ -17,30 +17,34 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $db->beginTransaction();
+                // $sql: Quantas categorias_simples existem com o nome $supercat?
                 $sql = "SELECT COUNT(nome)
                         FROM categoria_simples
                         WHERE nome = '$supercat';";
                 $result =  $db->query($sql);
                 $count = $result->fetchColumn();
-                echo "$count";
                 
                 if($count > 0) {
-                    echo("<p>$supercat está registada como categoria simples.</p>");
-                    $sql = "DELETE FROM categoria_simples WHERE nome='$supercat';";
-                    echo("<p>Apagar $supercat de categoria_simples:</p>");
+                    echo("<p><b>$supercat</b> está registada como categoria simples.</p>");
+                    $sql = "DELETE FROM categoria_simples WHERE nome=?;";
+                    $prep = $db->prepare($sql);
+                    echo("<p>Apagar <b>$supercat</b> de <b>categoria_simples</b>:</p>");
                     echo("<p>$sql</p>");
-                    $db->query($sql);
-    
-                    $sql = "INSERT INTO super_categoria VALUES ('$supercat');";
-                    echo("<p>Adicionar $supercat a super_categoria:</p>");
+                    $prep->execute(array($supercat));
+
+                    $sql = "INSERT INTO super_categoria VALUES (?);";
+                    $prep = $db->prepare($sql);
+                    echo("<p>Adicionar <b>$supercat</b> a <b>super_categoria</b>:</p>");
                     echo("<p>$sql</p>");
-                    $db->query($sql);
+                    $prep->execute(array($supercat));
                 }
 
-                $sql = "INSERT INTO constituida VALUES ('$supercat', '$subcat');";
-                echo("<p>Adicionar nova subcategoria $subcat a $supercat:</p>");
+                $sql = "INSERT INTO constituida VALUES (?, ?);";
+                $prep = $db->prepare($sql);
+                echo("<p>Adicionar nova subcategoria <b>$subcat</b> a <b>$supercat</b>:</p>");
                 echo("<p>$sql</p>");
-                $db->query($sql);
+                $prep->execute(array($supercat, $subcat));
+
                 $db->commit();
                 $db = null;
             }

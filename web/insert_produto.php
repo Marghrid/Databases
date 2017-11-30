@@ -24,16 +24,15 @@
                 $sql = "INSERT INTO produto VALUES (?, ?, ?, ?, CURRENT_DATE);";
                 $prep = $db->prepare($sql);
 
-                echo("<p>Adicionando novo produto '$design' (EAN = $ean):</p>");
-
+                echo("<p>Adicionando novo produto <b>$design</b> (EAN = <b>$ean</b>):</p>");
                 $prep->execute(array($ean, $design, $categoria, $forn_prim));
                 echo("<p>INSERT INTO produto VALUES ($ean, '$design', '$categoria', $forn_prim, Data atual);</p>");
-
                 
-                $sql = "INSERT INTO fornece_sec VALUES ($forn_sec, $ean);";
+                $sql = "INSERT INTO fornece_sec VALUES (?, ?);";
+                $prep = $db->prepare($sql);
                 
                 echo("<p>Adicionando novo fornecedor secundário para o produto $design (EAN = $ean):</p>");
-                $db->query($sql);
+                $prep->execute(array($forn_sec, $ean));
                 echo("<p>$sql</p>");
 
                 $db->query("commit;");
