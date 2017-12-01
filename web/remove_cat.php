@@ -17,24 +17,26 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-                $sql = "SELECT COUNT(categoria) FROM constituida WHERE categoria = '$nome_categoria'";
+                $sql = "SELECT super_categoria FROM constituida WHERE categoria = '$nome_categoria'";
                 $result = $db->query($sql);
-                $count = $result->fetchColumn();
+                $count = $result->rowCount();
                 
                 if($count > 0) {
-                    $sql = "SELECT categoria FROM constituida where super_categoria='$supercategoria';";
-                    $result = $db->query($sql);
                     echo "<p>Não é possível remover $nome_categoria porque está registada como subcategoria de:</p>";
+
                     echo "<table>";
+                    echo("<tr>\n");
+                    echo("<th>Nome</th>\n");
+                    echo("</tr>\n");
                     foreach($result as $row)
                     {
                         echo("<tr>\n");
-                        echo("<td>{$row['categoria']}</td>\n");
+                        echo("<td>{$row['super_categoria']}</td>\n");
                         echo("</tr>\n");
                     }
                     echo "</table>";
 
-                    echo "<p>Por favor, remova $nome_categoria como subcategoria desta(s) categorias antes de proceder à sua eliminação.</p>";
+                    echo "<p>Por favor, remova $nome_categoria como subcategoria desta(s) categoria(s) antes de proceder à sua eliminação.</p>";
                 }
                 else {
                     $db->query("begin transaction;");

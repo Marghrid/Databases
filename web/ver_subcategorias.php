@@ -6,6 +6,25 @@
     <body>
 <?php
     $supercategoria = $_REQUEST['nome_categoria'];
+
+    function print_all_subcats($cat, $indent, $db) {
+    	$sql = "SELECT super_categoria, categoria FROM constituida where super_categoria='$cat';";
+        $result = $db->query($sql);
+        foreach($result as $row)
+        {
+        	$subcat = $row['categoria'];
+        	echo("<tr>\n");
+        	echo("<td>\n");
+        	for($i = 0; $i < $indent; ++$i) {
+        		echo("&emsp;");
+        	}
+        	echo("$subcat\n");
+        	echo("</td>\n");
+        	echo("<td><a href=\"remove_subcat_warning.php?nome_categoria=$cat&nome_subcategoria=$subcat\">Remover</a></td>\n");
+        	echo("</tr>\n");
+        	print_all_subcats($subcat, $indent+1, $db);
+        }
+    }
     try
     {
         $host = "db.ist.utl.pt";
@@ -18,46 +37,15 @@
         echo("<h3>Subcategorias de '$supercategoria':</h3>");
         echo("<table>\n");
 
-        $sql = "SELECT categoria FROM constituida where super_categoria='$supercategoria';";
-        $result = $db->query($sql);
         echo("<tr>\n");
-        echo("<th>Categoria</th>\n");
+        echo("<th>Subcategoria</th>\n");
         echo("<th>Opções</th>\n");
         echo("</tr>\n");
-        foreach($result as $row)
-        {
-            echo("<tr>\n");
-            echo("<td>{$row['categoria']}</td>\n");
-            echo("<td><a href=\"remove_subcat_warning.php?nome_categoria=$supercategoria&nome_subcategoria={$row['categoria']}\">Remover</a></td>\n");
-            echo("</tr>\n");
-        }
-
-        $sql = "WITH RECURSIVE todas_subcategorias(super_categoria, categoria) AS (
-                    SELECT super_categoria, categoria FROM constituida WHERE super_categoria = '$supercategoria'
-                    UNION ALL
-                    SELECT c.super_categoria, c.categoria
-                    FROM todas_subcategorias s, constituida c
-                    WHERE c.super_categoria = s.categoria
-                  )
-                SELECT categoria
-                FROM todas_subcategorias
-                WHERE categoria NOT IN (
-                    SELECT categoria
-                    FROM constituida
-                    WHERE super_categoria = '$supercategoria'
-                );";
-        $result = $db->query($sql);
-
         
-        foreach($result as $row)
-        {
-            echo("<tr>\n");
-            echo("<td>{$row['categoria']}</td>\n");
-            echo("<td style=\"text-align:center;\">-</td>\n");
-            echo("</tr>\n");
-        }
+        print_all_subcats($supercategoria, 0, $db);
+
         echo("<tr>\n");
-        echo("<td colspan=2><a href=\"nova_subcategoria.php?supercategoria=$supercategoria\">Adicionar nova subcategoria</a></td>\n");
+        echo("<td colspan=3><a href=\"nova_subcategoria.php?supercategoria=$supercategoria\">Adicionar nova subcategoria</a></td>\n");
         echo("</tr>\n");
         echo("</table>\n");
 
