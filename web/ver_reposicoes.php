@@ -18,23 +18,18 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $sql = "SELECT * FROM reposicao WHERE ean='$ean';";
-                /*echo("<h3>Reposicao do produto (ean= $ean):");
-                echo("$ean");
-                echo("<p>$sql</p>");
-                echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");*/
-
                 $result = $db->query($sql);
 
-                echo("<h3>Reposições do produto (EAN = $ean, designação = $design):</h3>");
+                echo("<h3>Reposições do produto <b>$design</b> (EAN = $ean):</h3>");
                 echo("<table>\n");
                 echo("<tr>\n");
                 echo("<th>EAN</th>\n");
-                echo("<th>Número</th>\n");
-                echo("<th>Lado</th>\n");
-                echo("<th>Altura</th>\n");
+                echo("<th>Número do corredor</th>\n");
+                echo("<th>Lado da prateleira</th>\n");
+                echo("<th>Altura da prateleira</th>\n");
                 echo("<th>Operador</th>\n");
                 echo("<th>Instante</th>\n");
-                echo("<th>Unidades</th>\n");
+                echo("<th>Número de unidades repostas</th>\n");
                 echo("</tr>\n");
                 foreach($result as $row)
                 {

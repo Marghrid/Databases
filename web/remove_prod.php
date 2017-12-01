@@ -19,12 +19,22 @@
                 $db->query("start transaction;");
 
                 $sql = "DELETE FROM fornece_sec WHERE ean='$ean';";
-                echo("<p>Removing $ean from fornece_sec:</p>");
+                echo("<p>Removing <b>$ean</b> from <b>fornece_sec</b>:</p>");
+                echo("<p>$sql</p>");
+                $db->query($sql);
+
+                $sql = "DELETE FROM reposicao WHERE ean='$ean';";
+                echo("<p>Removing <b>$ean</b> from <b>reposicao</b>:</p>");
+                echo("<p>$sql</p>");
+                $db->query($sql);
+
+                $sql = "DELETE FROM planograma WHERE ean='$ean';";
+                echo("<p>Removing <b>$ean</b> from <b>planograma</b>:</p>");
                 echo("<p>$sql</p>");
                 $db->query($sql);
 
                 $sql = "DELETE FROM produto WHERE ean='$ean';";
-                echo("<p>Removing $ean from produto:</p>");
+                echo("<p>Removing <b>$ean</b> from <b>produto</b>:</p>");
                 echo("<p>$sql</p>");
 
                 $db->query($sql);

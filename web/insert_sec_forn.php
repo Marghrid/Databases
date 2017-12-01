@@ -29,7 +29,7 @@
                 echo("<p>Adicionar <b>'$forn_sec'</b> como fornecedor secundário do produto <b>$design</b>(ean = <b>$ean</b>)</p>");
                 echo("<p>$sql</p>");
 
-                $prep->execute(array($nif, $ean));
+                $prep->execute(array($forn_sec, $ean));
 
                 $db = null;
             }
@@ -37,6 +37,8 @@
             {
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
+            echo("<p><a href=\"ver_fornecedores.php?ean=$ean&design=$design&forn_prim=$forn_prim\"> Voltar</a></p>");
+            
             echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
         ?>
     </body>

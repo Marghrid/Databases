@@ -112,8 +112,8 @@ CREATE TABLE planograma(
 );
 
 CREATE TABLE evento_reposicao(
-    operador NUMERIC(9)  NOT NULL UNIQUE CHECK (operador >= 0), -- nif do empregado
-    instante TIMESTAMP   NOT NULL UNIQUE CHECK (instante < CURRENT_TIMESTAMP),
+    operador NUMERIC(9) NOT NULL UNIQUE CHECK (operador >= 0), -- nif do empregado
+    instante TIMESTAMP  NOT NULL UNIQUE CHECK (instante < CURRENT_TIMESTAMP),
     PRIMARY KEY (instante),
     UNIQUE (operador, instante)
 );
@@ -129,5 +129,5 @@ CREATE TABLE reposicao(
     -- unidades repostas. Entre 1 e 2147483647
     PRIMARY KEY (ean, nro, lado, altura, operador, instante),
     FOREIGN KEY (ean, nro, lado, altura) REFERENCES  planograma(ean, nro, lado, altura),
-    FOREIGN KEY (operador, instante)     REFERENCES  evento_reposicao(operador, instante)
+    FOREIGN KEY (operador, instante)     REFERENCES  evento_reposicao(operador, instante) ON DELETE CASCADE
 );
