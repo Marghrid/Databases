@@ -7,6 +7,7 @@
         <?php
             $nome_categoria = $_REQUEST['nome_categoria'];
             $nome_subcategoria = $_REQUEST['nome_subcategoria'];
+            $nome_cat_escolhida = $_REQUEST['nome_cat_escolhida'];
 
             try
             {
@@ -54,8 +55,19 @@
                 $db->rollBack();    
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
+
+            if($nome_categoria == $nome_cat_escolhida)
+            {
+                $nome_categoria = '';
+            }
+
             echo("<p><a href=\"supermercado.php\">Ver supermercado</a> &nbsp 
-                <a href=\"ver_subcategorias.php?nome_categoria=$nome_categoria\"> Voltar a subcategorias</a></p>");
+                <a href=\"ver_subcategorias.php?nome_categoria=$nome_cat_escolhida\"> Voltar a subcategorias de <b>$nome_cat_escolhida</b></a>");
+            if($nome_categoria!='')
+            {
+                echo("&nbsp <a href=\"ver_subcategorias.php?nome_categoria=$nome_categoria\"> Ver subcategorias de <b>$nome_categoria</b></a>");
+            }
+            echo("</p>");
         ?>
     </body>
 </html>

@@ -8,7 +8,9 @@
         <form action="remove_subcat.php" method="post">
             <p><input type="hidden" name="nome_subcategoria" value="<?=$_REQUEST['nome_subcategoria']?>"/></p>
             <p><input type="hidden" name="nome_categoria" value="<?=$_REQUEST['nome_categoria']?>"/></p>
-            <p><input type="submit" value="Sim"/> <a href="ver_subcategorias.php?nome_categoria=<?=$_REQUEST['nome_categoria']?>">Ver subcategorias de <b><?=$_REQUEST['nome_categoria']?></b></a></p>
+            <p><input type="hidden" name="nome_cat_escolhida" value="<?=$_REQUEST['nome_cat_escolhida']?>"/></p>
+            <p><input type="submit" value="Sim"/>
+            <a href="ver_subcategorias.php?nome_categoria=<?=$_REQUEST['nome_cat_escolhida']?>">Voltar</a></p>
         </form>
     </body>
 </html>
