@@ -9,28 +9,29 @@
 SELECT nif, nome
 FROM
 	(
-		(SELECT nif, nome COUNT(nif) AS prims 
+		(SELECT nif, nome, COUNT(produto.forn_primario) AS prims 
 		FROM fornecedor LEFT JOIN produto ON fornecedor.nif=produto.forn_primario
 		GROUP BY nif, nome) AS primarios
 		NATURAL JOIN
-		(SELECT nif, nome COUNT(nif) AS secs
-		FROM (fornece_sec LEFT JOIN produto
-			ON fornece_sec.ean=produto.ean) NATURAL JOIN fornecedor
-		GROUP BY nif, nome) AS secundarios
+		(SELECT fornecedor.nif, fornecedor.nome, COUNT(fornece_sec.nif) AS secs
+		FROM fornece_sec LEFT JOIN produto
+			ON fornece_sec.ean=produto.ean RIGHT JOIN fornecedor ON fornecedor.nif=fornece_sec.nif
+		GROUP BY fornecedor.nif, fornecedor.nome) AS secundarios
 	)
 WHERE prims + secs =
 	(
 		SELECT MAX(prims+secs)
 		FROM
-			(
-				(SELECT nif, COUNT(nif) AS prims 
-				FROM fornecedor LEFT JOIN produto ON fornecedor.nif=produto.forn_primario
-				GROUP BY nif) AS primarios
-				NATURAL JOIN
-				(SELECT nif, COUNT(nif) AS secs
-				FROM fornece_sec LEFT JOIN produto ON fornece_sec.ean=produto.ean
-      			GROUP BY nif) AS secundarios
-			)
+		(
+			(SELECT nif, COUNT(produto.forn_primario) AS prims 
+			FROM fornecedor LEFT JOIN produto ON fornecedor.nif=produto.forn_primario
+			GROUP BY nif) AS primarios
+			NATURAL JOIN
+			(SELECT nif, COUNT(nif) AS secs
+			FROM fornece_sec LEFT JOIN produto
+				ON fornece_sec.ean=produto.ean
+			GROUP BY nif) AS secundarios
+		)
 	)
 
 -- b) Quais os fornecedores primarios (nome e nif) que forneceram produtos de
