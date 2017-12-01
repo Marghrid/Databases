@@ -27,7 +27,7 @@ CREATE TABLE categoria(
 
 CREATE TABLE categoria_simples(
     nome VARCHAR(200) NOT NULL,
-    PRIMARY KEY (nome) ,
+    PRIMARY KEY (nome),
     FOREIGN KEY (nome) REFERENCES categoria(nome) ON DELETE CASCADE
     -- Se uma categoria simples for apagada de categoria, e automaticamente
     --  apagada de categoria_simples.

@@ -36,9 +36,25 @@ WHERE prims + secs =
 
 -- b) Quais os fornecedores primarios (nome e nif) que forneceram produtos de
 --    todas as categorias simples?
-SELECT nif, nome
-FROM fornecedor
-WHERE nif = (subquery com ALL?)
+SELECT DISTINCT nif, nome FROM(
+	SELECT nif, nome
+	FROM fornecedor INNER JOIN produto ON fornecedor.nif = produto.forn_primario
+) AS fp 
+WHERE NOT EXISTS (
+	SELECT nome 
+	FROM categoria_simples c
+	WHERE NOT EXISTS(
+		(SELECT categoria
+		FROM produto p
+		WHERE p.forn_primario=fp.nif
+		AND p.categoria = c.nome)
+		UNION
+		(SELECT categoria
+		FROM fornece_sec NATURAL JOIN produto INNER JOIN categoria_simples ON produto.categoria=categoria.nome
+		WHERE fornece_sec.nif=fp.nif
+		AND produto.categoria = c.nome)
+	)
+);
 
 -- c) Quais os produtos (ean) que nunca foram repostos?
 SELECT ean
