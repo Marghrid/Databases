@@ -16,7 +16,7 @@
         	echo("<tr>\n");
         	echo("<td>\n");
         	for($i = 0; $i < $indent; ++$i) {
-        		echo("&emsp;");
+        		echo("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
         	}
         	echo("$subcat\n");
         	echo("</td>\n");
