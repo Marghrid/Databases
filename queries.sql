@@ -32,7 +32,7 @@ WHERE prims + secs =
 				ON fornece_sec.ean=produto.ean
 			GROUP BY nif) AS secundarios
 		)
-	)
+	);
 
 -- b) Quais os fornecedores primarios (nome e nif) que forneceram produtos de
 --    todas as categorias simples?
