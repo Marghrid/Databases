@@ -9,11 +9,11 @@
 SELECT nif, nome
 FROM
 	(
-		(SELECT nif, nome COUNT(nif) AS prims 
+		(SELECT nif, nome, COUNT(nif) AS prims 
 		FROM fornecedor LEFT JOIN produto ON fornecedor.nif=produto.forn_primario
 		GROUP BY nif, nome) AS primarios
 		NATURAL JOIN
-		(SELECT nif, nome COUNT(nif) AS secs
+		(SELECT nif, nome, COUNT(nif) AS secs
 		FROM (fornece_sec LEFT JOIN produto
 			ON fornece_sec.ean=produto.ean) NATURAL JOIN fornecedor
 		GROUP BY nif, nome) AS secundarios
@@ -31,13 +31,29 @@ WHERE prims + secs =
 				FROM fornece_sec LEFT JOIN produto ON fornece_sec.ean=produto.ean
       			GROUP BY nif) AS secundarios
 			)
-	)
+	);
 
 -- b) Quais os fornecedores primarios (nome e nif) que forneceram produtos de
 --    todas as categorias simples?
-SELECT nif, nome
-FROM fornecedor
-WHERE nif = (subquery com ALL?)
+SELECT DISTINCT nif, nome FROM(
+	SELECT nif, nome
+	FROM fornecedor INNER JOIN produto ON fornecedor.nif = produto.forn_primario
+) AS fp 
+WHERE NOT EXISTS (
+	SELECT nome 
+	FROM categoria_simples c
+	WHERE NOT EXISTS(
+		(SELECT categoria
+		FROM produto p
+		WHERE p.forn_primario=fp.nif
+		AND p.categoria = c.nome)
+		UNION
+		(SELECT categoria
+		FROM fornece_sec NATURAL JOIN produto INNER JOIN categoria_simples ON produto.categoria=categoria.nome
+		WHERE fornece_sec.nif=fp.nif
+		AND produto.categoria = c.nome)
+	)
+);
 
 -- c) Quais os produtos (ean) que nunca foram repostos?
 SELECT ean
