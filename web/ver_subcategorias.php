@@ -45,7 +45,7 @@
         print_all_subcats($supercategoria, 0, $db);
 
         echo("<tr>\n");
-        echo("<td colspan=3><a href=\"nova_subcategoria.php?supercategoria=$supercategoria\">Adicionar nova subcategoria</a></td>\n");
+        echo("<td colspan=2><a href=\"nova_subcategoria.php?supercategoria=$supercategoria\">Adicionar nova subcategoria</a></td>\n");
         echo("</tr>\n");
         echo("</table>\n");
 
