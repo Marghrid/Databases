@@ -37,8 +37,7 @@
                         WHERE nome = '$supercat';";
                 $result =  $db->query($sql);
                 $count = $result->fetchColumn();
-                $test = testParent($supercat, $db, $subcat);
-                if($test == 0) {
+                if(!testParent($supercat, $db, $subcat)) {
                     if ($count > 0) {
 
                         echo("<p><b>$supercat</b> está registada como categoria simples.</p>");
@@ -61,7 +60,7 @@
                     $prep->execute(array($supercat, $subcat));
                 }
                 else {
-                    echo("<p>Impossível adicionar a subcategoria. Iria gerar ciclo</p>");
+                    echo("<p>Impossível adicionar <b>$subcat</b> a <b>$supercat</b>. Iria gerar ciclo</p>");
                 }
 
                 $db->commit();
