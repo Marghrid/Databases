@@ -7,7 +7,7 @@
 <?php
     $supercategoria = $_REQUEST['nome_categoria'];
 
-    function print_all_subcats($cat, $indent, $db) {
+    function print_all_subcats($cat, $indent, $db, $cat_escolhida) {
     	$sql = "SELECT super_categoria, categoria FROM constituida where super_categoria='$cat';";
         $result = $db->query($sql);
         foreach($result as $row)
@@ -20,9 +20,9 @@
         	}
         	echo("$subcat\n");
         	echo("</td>\n");
-        	echo("<td><a href=\"remove_subcat_warning.php?nome_categoria=$cat&nome_subcategoria=$subcat\">Remover</a></td>\n");
+        	echo("<td><a href=\"remove_subcat_warning.php?nome_categoria=$cat&nome_subcategoria=$subcat&nome_cat_escolhida=$cat_escolhida\">Remover</a></td>\n");
         	echo("</tr>\n");
-        	print_all_subcats($subcat, $indent+1, $db);
+        	print_all_subcats($subcat, $indent+1, $db, $cat_escolhida);
         }
     }
     try
@@ -42,7 +42,7 @@
         echo("<th>Opções</th>\n");
         echo("</tr>\n");
         
-        print_all_subcats($supercategoria, 0, $db);
+        print_all_subcats($supercategoria, 0, $db, $supercategoria);
 
         echo("<tr>\n");
         echo("<td colspan=2><a href=\"nova_subcategoria.php?supercategoria=$supercategoria\">Adicionar nova subcategoria</a></td>\n");
