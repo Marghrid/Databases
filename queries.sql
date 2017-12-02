@@ -3,36 +3,38 @@
 -- a) Qual o nome do fornecedor que forneceu o maior número de categorias?
 --    Note que pode ser mais do que um fornecedor.
 
--- uso de left join em vez de natural join necessario para o caso em que o maximo e = 0.
---SELECT nif, nome FROM tabela
---WHERE prims + secs = (SELECT MAX(prims + secs) FROM tabela)
+--SELECT nome FROM tabela
+--WHERE count = (SELECT MAX(count) FROM tabela)
 SELECT nome
 FROM
 (
-	(SELECT nif, nome, COUNT(produto.forn_primario) AS prims 
-	FROM fornecedor LEFT JOIN produto ON fornecedor.nif=produto.forn_primario
-	GROUP BY nif, nome) AS primarios
-	NATURAL JOIN
-	(SELECT fornecedor.nif, fornecedor.nome, COUNT(fornece_sec.nif) AS secs
-	FROM fornece_sec
-		LEFT JOIN produto ON fornece_sec.ean=produto.ean
-		RIGHT JOIN fornecedor ON fornecedor.nif=fornece_sec.nif
-	GROUP BY fornecedor.nif, fornecedor.nome) AS secundarios
-)
-WHERE prims + secs =
-(
-	SELECT MAX(prims+secs)
+	SELECT nif, COUNT(DISTINCT categoria)
 	FROM
 	(
-		(SELECT nif, COUNT(produto.forn_primario) AS prims 
-		FROM fornecedor LEFT JOIN produto ON fornecedor.nif=produto.forn_primario
-		GROUP BY nif) AS primarios
-		NATURAL JOIN
-		(SELECT nif, COUNT(nif) AS secs
-		FROM fornece_sec LEFT JOIN produto
-			ON fornece_sec.ean=produto.ean
-		GROUP BY nif) AS secundarios
-	)
+		SELECT categoria, forn_primario AS nif
+		FROM produto
+		UNION ALL
+		SELECT categoria, nif
+		FROM produto NATURAL JOIN fornece_sec
+  	) AS catnif
+	GROUP BY nif
+) AS catcount NATURAL JOIN fornecedor
+WHERE count =
+(
+	SELECT MAX(count)
+	FROM
+	(
+		SELECT nif, COUNT(DISTINCT categoria)
+		FROM
+		(
+			SELECT categoria, forn_primario AS nif
+			FROM produto
+			UNION ALL
+			SELECT categoria, nif
+			FROM produto NATURAL JOIN fornece_sec
+		) AS catnif
+		GROUP BY nif
+	) AS catcount
 );
 
 -- b) Quais os fornecedores primarios (nome e nif) que forneceram produtos de
