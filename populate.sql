@@ -79,6 +79,7 @@ INSERT INTO fornecedor VALUES
 INSERT INTO produto VALUES
 (1234567890123, 'Delta Q SuperExpress', 		'Maquina de cafe',		 	323556789, '2017-01-11'),
 (2345678901231, 'Whiskas saquetas',     		'Comida de gato',  		 	131242353, '2016-08-12'),
+(2934875401231, 'Hills Sago 30kg',       		'Comida de cao',  		 	131242353, '2016-08-12'),
 (3456789012312, 'Leite meio gordo Mimosa',     	'Leite',     			 	111222333, '2017-06-11'),
 (3456789032312, 'Iogurte aromas Agros',    		'Iogurte',    			  	423453686, '2016-03-11'),
 (3456785062712, 'Queijo da Serra da Estrela',   'Queijo',     			 	321232343, '2017-09-11'),
@@ -87,7 +88,12 @@ INSERT INTO produto VALUES
 (3456485662912, 'Maca Royal Gala',				'Fruta',					321232343, '2016-02-11'),
 (3456785056712, 'Pera Rocha',					'Fruta',					321232343, '2015-07-11'),
 (2456385062612, 'Clementina XPTO',				'Fruta',					321232343, '2015-05-11'),
-(6456785069611, 'Laranja do Algarve',			'Fruta',					321232343, '2017-11-11');
+(6456785069611, 'Laranja do Algarve',			'Fruta',					321232343, '2017-11-11'),
+(6987654429611, 'Escova dos dentes BShiny',		'Produto Higienico',		123365789, '2017-11-11'),
+(6087645785321, 'Bolinhas de agua 6 un.',		'Pao de trigo',     		423835788, '2017-11-11'),
+(9876543247611, 'Pao de centeio XL',			'Pao de centeio',   		423835788, '2017-11-11'),
+(7534579969611, 'Bimbo superfofo sem codea',	'Pao de forma',				423835788, '2017-11-11'),
+(6324797652346, 'Bolo de anos Frozen',			'Bolo de anos',				123451689, '2017-11-11');
 
 INSERT INTO fornece_sec VALUES
 (123365789, 3456789032312), --fornecedor04 Iogurte aromas Agros
@@ -98,17 +104,35 @@ INSERT INTO fornece_sec VALUES
 (323150669, 3456485662912), --fornecedor07 Maca Royal Gala
 (423453686, 3456485662912), --fornecedor05 Maca Royal Gala
 (146456786, 3456485662912), --fornecedor02 Maca Royal Gala
-(423456789, 6456785069611), --fornecedor01 Laranja do Algarve
-(123456788, 6456785069611), --fornecedor02 Laranja do Algarve
-(146456786, 6456785069611), --fornecedor03 Laranja do Algarve
-(323556789, 6456785069611), --fornecedor04 Laranja do Algarve
-(123365789, 6456785069611), --fornecedor05 Laranja do Algarve
+(123456788, 6456785069611), --fornecedor01 Laranja do Algarve
+(146456786, 6456785069611), --fornecedor02 Laranja do Algarve
+(323556789, 6456785069611), --fornecedor03 Laranja do Algarve
+(123365789, 6456785069611), --fornecedor04 Laranja do Algarve
 (423453686, 6456785069611), --fornecedor05 Laranja do Algarve
 (123451689, 6456785069611), --fornecedor06 Laranja do Algarve
 (323150669, 6456785069611), --fornecedor07 Laranja do Algarve
 (224456789, 6456785069611), --fornecedor08 Laranja do Algarve
 (423835788, 6456785069611), --fornecedor09 Laranja do Algarve
-(123000759, 6456785069611); --fornecedor10 Laranja do Algarve
+(123000759, 6456785069611), --fornecedor10 Laranja do Algarve
+(111222333, 6456785069611), --Mimosa       Laranja do Algarve
+(123451689, 1234567890123), --fornecedor06 Delta Q SuperExpress
+(123451689, 2345678901231), --fornecedor06 Whiskas saquetas  
+(123451689, 2934875401231), --fornecedor06 Hills Sago 30kg 
+(123451689, 3456789012312), --fornecedor06 Leite meio gordo Mimosa
+(123451689, 3456789032312), --fornecedor06 Iogurte aromas Agros
+(123451689, 3456785062712), --fornecedor06 Queijo da Serra da Estrela
+(123451689, 3356485562712), --fornecedor06 Siemens SuperClothesCleaner
+(123451689, 3496785072712), --fornecedor06 Maquina roupa X530-ABB
+(123451689, 3456485662912), --fornecedor06 Maca Royal Gala
+(123451689, 3456785056712), --fornecedor06 Pera Rocha
+(123451689, 2456385062612), --fornecedor06 Clementina XPTO
+(123451689, 6987654429611), --fornecedor06 Escova dos dentes BShiny
+(123451689, 6087645785321), --fornecedor06 Bolinhas de agua 6 un.
+(123451689, 9876543247611), --fornecedor06 Pao de centeio XL
+(123451689, 7534579969611), --fornecedor06 Bimbo superfofo sem codea
+(123451689, 6324797652346); --fornecedor06 Bolo de anos Frozen
+-- fornecedor06 fornece todas as categorias simples
+-- Laranja do Algarve tem mais de 10 fornecedores secundários
 
 INSERT INTO corredor VALUES
 (1, 200),
