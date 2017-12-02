@@ -116,6 +116,15 @@
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
         ?>
+
+        <footer>
+        	<b>&nbsp;&nbsp;&nbsp;&nbsp;Grupo 42:</b>
+        	<ul>
+  			    <li><b>76221</b>  -  Emanuel Pereira</li>
+			    <li><b>80832</b>  -  Margarida Ferreira</li>
+			    <li><b>83532</b>  -  Miguel Marques</li>
+			</ul>
+        </footer>
     </body>
 </html>
         

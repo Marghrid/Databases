@@ -8,8 +8,9 @@
     $supercategoria = $_REQUEST['nome_categoria'];
 
     function print_all_subcats($cat, $indent, $db, $cat_escolhida) {
-    	$sql = "SELECT super_categoria, categoria FROM constituida where super_categoria='$cat';";
-        $result = $db->query($sql);
+    	$sql = "SELECT super_categoria, categoria FROM constituida where super_categoria=?;";
+        $prep = $db->prepare($sql);
+        $result = $prep->execute(array($cat));
         foreach($result as $row)
         {
         	$subcat = $row['categoria'];
@@ -34,7 +35,7 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        echo("<h3>Subcategorias de '$supercategoria':</h3>");
+        echo("<h3>Subcategorias de <b>$supercategoria</b>:</h3>");
         echo("<table>\n");
 
         echo("<tr>\n");

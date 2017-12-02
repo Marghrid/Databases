@@ -16,11 +16,13 @@
         $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        echo("<h3>Subcategorias de '$supercategoria':</h3>");
+        echo("<h3>Subcategorias de <b>$supercategoria</b>:</h3>");
         echo("<table>\n");
 
-        $sql = "SELECT super_categoria, categoria FROM constituida where super_categoria='$supercategoria';";
-        $result = $db->query($sql);
+        $sql = "SELECT super_categoria, categoria FROM constituida where super_categoria=?;";
+        $prep = $db->prepare($sql);
+
+        $prep->execute(array($supercategoria));
         
         echo("<tr>\n");
         echo("<th>Super-categoria direta</th>\n");
@@ -37,7 +39,7 @@
         }
 
         $sql = "WITH RECURSIVE todas_subcategorias(super_categoria, categoria) AS (
-                    SELECT super_categoria, categoria FROM constituida WHERE super_categoria = '$supercategoria'
+                    SELECT super_categoria, categoria FROM constituida WHERE super_categoria = ?
                     UNION ALL
                     SELECT c.super_categoria, c.categoria
                     FROM todas_subcategorias s, constituida c
@@ -48,9 +50,10 @@
                 WHERE categoria NOT IN (
                     SELECT categoria
                     FROM constituida
-                    WHERE super_categoria = '$supercategoria'
+                    WHERE super_categoria = ?
                 );";
-        $result = $db->query($sql);
+        $prep = $db->prepare($sql);
+        $prep->execute(array($supercategoria, $supercategoria));
 
         foreach($result as $row)
         {
