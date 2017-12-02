@@ -1,6 +1,11 @@
-h1, h2, h3, h4, h5, h6, p, table, td, th {
+h1, h2, h3, h4, h5, h6, p, table, td, th, footer {
 	font-family: sans-serif;
 	color: navy;
+}
+
+footer {
+	padding-top: 50;
+	font-size: 20;
 }
 
 h1 {
@@ -31,7 +36,7 @@ tr:hover {
 }
 
 td, th {
-	padding: 7;
+	padding: 8;
 }
 
 th {
