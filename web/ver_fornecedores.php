@@ -23,7 +23,7 @@
             $prep->execute(array($ean));
             $result = $prep->fetchAll();
 
-            echo("<h3>Fornecedores do produto (EAN = $ean, designação = '$design', fornecedor primário = '$forn_prim'):</h3>");
+            echo("<h3>Fornecedores do produto <b>$design</b> (EAN = <b>$ean</b>):</h3>");
             echo("<h3>Primário:</h3>");
             echo("<table>\n");
             echo("<tr>\n");
