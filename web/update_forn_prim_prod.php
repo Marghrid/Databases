@@ -26,21 +26,44 @@
 
                 if($is_sec == "yes")
                 {
-                    $sql = "DELETE FROM fornece_sec WHERE ean = ? AND nif = ?;";
-                    echo("<p>Remover fornecedor secundário do produto</p>");
-                    echo("<p>DELETE FROM fornece_sec WHERE ean = $ean AND nif = $novo_forn_prim;</p>");
-
+                    $sql = "SELECT COUNT(nif)
+                       FROM fornece_sec
+                       WHERE ean = ?;";
                     $prep = $db->prepare($sql);
-                    $prep->execute(array($ean, $novo_forn_prim));
+                    $prep->execute(array($ean));
+                    $count = $prep->fetchColumn();
+                    
+                    if($count == 1) {
+                        echo "<p>O fornecedor que escolheu é o único fornecedor secundário do produto (EAN = <b>$ean</b>). Não é possível remover o último fornecedor secundário de um produto.</p>";
+                        echo "<p>Por favor adicione outro fornecedor secundário a <b>$design</b> antes de alterar o fornecedor NIF = <b>$novo_forn_prim</b> para fornecedor primário.</p>"  ;
+                    }
+                    else {
+                        $sql = "DELETE FROM fornece_sec WHERE ean = ? AND nif = ?;";
+                        echo("<p>Remover fornecedor secundário do produto</p>");
+                        echo("<p>DELETE FROM fornece_sec WHERE ean = $ean AND nif = $novo_forn_prim;</p>");
+
+                        $prep = $db->prepare($sql);
+                        $prep->execute(array($ean, $novo_forn_prim));
+
+                        $sql = "UPDATE produto SET forn_primario=? WHERE ean=?;";
+                        echo("<p>Alterar o fornecedor primário do produto (ean = <b>$ean</b>) para  <b>$novo_forn_prim</b></p>");
+                        echo("<p>UPDATE produto SET forn_primario=$novo_forn_prim WHERE ean=$ean;</p>");
+        
+                        $prep = $db->prepare($sql);
+                        $prep->execute(array($novo_forn_prim, $ean));
+
+                    }
                 }
+                else {
 
+                    $sql = "UPDATE produto SET forn_primario=? WHERE ean=?;";
+                    echo("<p>Alterar o fornecedor primário do produto (ean = <b>$ean</b>) para  <b>$novo_forn_prim</b></p>");
+                    echo("<p>UPDATE produto SET forn_primario=$novo_forn_prim WHERE ean=$ean;</p>");
+    
+                    $prep = $db->prepare($sql);
+                    $prep->execute(array($novo_forn_prim, $ean));
 
-                $sql = "UPDATE produto SET forn_primario=? WHERE ean=?;";
-                echo("<p>Alterar o fornecedor primário do produto(ean = $ean) para '$novo_forn_prim'</p>");
-                echo("<p>UPDATE produto SET forn_primario=$novo_forn_prim WHERE ean=$ean;</p>");
-
-                $prep = $db->prepare($sql);
-                $prep->execute(array($novo_forn_prim, $ean));
+                }
 
                 $db->query("commit;");
 

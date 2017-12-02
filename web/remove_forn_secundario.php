@@ -27,7 +27,7 @@
                 
                 if($count == 1) {
                     echo "<p>Não é possível remover o último fornecedor secundário de um produto.</p>";
-                    echo "<p>Por favor adicione outro fornecedor secundário a <b>$design</b> antes de remover o fornecedor nif = <b>$forn_sec</b></p>";
+                    echo "<p>Por favor adicione outro fornecedor secundário a <b>$design</b> antes de remover o fornecedor NIF = <b>$forn_sec</b></p>";
                 }
 
                 else {
