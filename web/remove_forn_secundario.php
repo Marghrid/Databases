@@ -20,8 +20,9 @@
 
                 $sql = "SELECT COUNT(nif)
                         FROM fornece_sec
-                        WHERE ean = $ean;";
-                $result = $db->query($sql);
+                        WHERE ean = ?;";
+                $prep = $db->prepare($sql);
+                $result = $prep->execute(array($ean));
                 $count = $result->fetchColumn();
                 
                 if($count == 1) {
@@ -30,11 +31,11 @@
                 }
 
                 else {
-                    $sql = "DELETE FROM fornece_sec WHERE nif='$forn_sec' AND ean='$ean';";
-                
+                    $sql = "DELETE FROM fornece_sec WHERE nif=? AND ean=?;";
+                    $prep = $db->prepare($sql);
                     echo("<p>Removendo o fornecedor secundário '$forn_sec' do produto (EAN = $ean, designação = '$design'):</p>");
-                    echo($sql);
-                    $db->query($sql);
+                    echo("<p>DELETE FROM fornece_sec WHERE nif=$forn_sec AND ean=$ean;</p>");
+                    $prep->execute(array($forn_sec, $ean));
                 }
 
                 $db = null;

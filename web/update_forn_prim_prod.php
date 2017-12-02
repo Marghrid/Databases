@@ -26,19 +26,21 @@
 
                 if($is_sec == "yes")
                 {
-                    $sql = "DELETE FROM fornece_sec WHERE ean='$ean' AND nif='$novo_forn_prim';";
+                    $sql = "DELETE FROM fornece_sec WHERE ean = ? AND nif = ?;";
                     echo("<p>Remover fornecedor secundário do produto</p>");
-                    echo("<p>$sql</p>");
+                    echo("<p>DELETE FROM fornece_sec WHERE ean = $ean AND nif = $novo_forn_prim;</p>");
 
-                    $db->query($sql);
+                    $prep = $db->prepare($sql);
+                    $prep->execute(array($ean, $novo_forn_prim));
                 }
 
 
-                $sql = "UPDATE produto SET forn_primario='$novo_forn_prim' WHERE ean='$ean';";
+                $sql = "UPDATE produto SET forn_primario=? WHERE ean=?;";
                 echo("<p>Alterar o fornecedor primário do produto(ean = $ean) para '$novo_forn_prim'</p>");
-                echo("<p>$sql</p>");
+                echo("<p>UPDATE produto SET forn_primario=$novo_forn_prim WHERE ean=$ean;</p>");
 
-                $db->query($sql);
+                $prep = $db->prepare($sql);
+                $prep->execute(array($novo_forn_prim, $ean));
 
                 $db->query("commit;");
 

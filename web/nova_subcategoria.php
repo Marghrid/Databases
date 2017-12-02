@@ -22,14 +22,15 @@
                 //   (2) Não são já descendentes diretas dela
                 $sql = "SELECT nome 
                         FROM categoria 
-                        WHERE nome != '$supercategoria' 
+                        WHERE nome != ? 
                             AND nome NOT IN (
                                 SELECT categoria 
                                 FROM constituida 
-                                WHERE super_categoria = '$supercategoria')
+                                WHERE super_categoria = ?)
                         ORDER BY nome;";
 
-                $result = $db->query($sql);
+                $prep = $db->prepare($sql);
+                $result = $prep->execute(array($supercategoria, $supercategoria));
 
                 echo("<h3>Qual das categorias quer adicionar como
                     subcategoria de $supercategoria?</h3>");

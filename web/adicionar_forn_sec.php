@@ -23,9 +23,10 @@
 
                 $sql = "SELECT * 
                         FROM  fornecedor
-                        WHERE (nif NOT IN (SELECT nif FROM fornece_sec WHERE ean='$ean'))
-                         AND (nif != '$forn_prim');";
-                $result = $db->query($sql);
+                        WHERE (nif NOT IN (SELECT nif FROM fornece_sec WHERE ean=?))
+                         AND (nif != ?);";
+                $prep = $db->prepare($sql);
+                $result = $prep->execute(array($ean, $forn_prim));
 
                 echo("<table>\n");
                 echo("<th>NIF</th>\n");

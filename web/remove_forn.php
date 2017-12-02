@@ -18,9 +18,10 @@
 
                 $db->query("begin transaction;");
 
-                $sql = "SELECT COUNT(*) AS count FROM produto WHERE forn_primario='$nif';";
+                $sql = "SELECT COUNT(*) AS count FROM produto WHERE forn_primario = ?;";
 
-                $result = $db->query($sql);
+                $prep = $db->prepare($sql);
+                $result = $prep->execute(array($nif));
                 foreach($result as $row)
                 {
                     $count = $row['count'];
@@ -28,9 +29,10 @@
                 
                 if($count>0)
                 {
-                    $sql = "SELECT ean, design FROM produto WHERE forn_primario='$nif';";
+                    $sql = "SELECT ean, design FROM produto WHERE forn_primario = ?;";
                     echo("<p>O fornecedor não pode ser removido porque é fornecedor primário de:</p>\n");
-                    $result = $db->query($sql);
+                    $prep = $db->prepare($sql);
+                    $result = $prep->execute(array($nif));
 
                     echo("<table>\n");
                     echo("<tr>\n");
@@ -48,18 +50,20 @@
                 }
                 else
                 {
-                    $sql = "DELETE FROM fornece_sec WHERE nif='$nif';";
+                    $sql = "DELETE FROM fornece_sec WHERE nif = ?;";
                     
                     echo("<p>Trying to remove $nif from fornece_sec:</p>");
-                    echo("<p>$sql</p>");
-                    $db->query($sql);
+                    echo("<p>DELETE FROM fornece_sec WHERE nif = $nif;</p>");
+                    $prep = $db->prepare($sql);
+                    $prep->execute(array($nif));
 
-                    $sql = "DELETE FROM fornecedor WHERE nif='$nif';";
+                    $sql = "DELETE FROM fornecedor WHERE nif = ?;";
 
                     echo("<p>Trying to remove $nif from fornecedor:</p>");
-                    echo("<p>$sql</p>");
+                    echo("<p>DELETE FROM fornecedor WHERE nif = $nif;</p>");
 
-                    $db->query($sql);
+                    $prep = $db->prepare($sql);
+                    $prep->execute(array($nif));
                 }
                 $db->query("commit;");
 

@@ -23,9 +23,10 @@
             // Mostrar todos os fornecedores que o produto pode ter como primario:
             $sql = "SELECT *
                     FROM fornecedor
-                    WHERE nif != $forn_prim;";
+                    WHERE nif != ?;";
             
-            $result = $db->query($sql);
+            $prep = $db->prepare($sql);
+            $result = $prep->execute(array($forn_prim));
     
             echo("<h3>Escolha um fornecedor secundário para '$design' (EAN = $ean):</h3>");
     

@@ -9,8 +9,9 @@
             $subcat = $_REQUEST['subcategoria'];
 
             function testParent($cat, $db, $goal) {
-                $sql = "SELECT super_categoria, categoria FROM constituida WHERE categoria='$cat';";
-                $result = $db->query($sql);
+                $sql = "SELECT super_categoria, categoria FROM constituida WHERE categoria=?;";
+                $prep = $db->prepare($sql);
+                $result = $prep->execute(array($cat));
                 foreach($result as $row)
                 {
                     $super_categoria = $row['super_categoria'];
@@ -34,8 +35,9 @@
                 // $sql: Quantas categorias_simples existem com o nome $supercat?
                 $sql = "SELECT COUNT(nome)
                         FROM categoria_simples
-                        WHERE nome = '$supercat';";
-                $result =  $db->query($sql);
+                        WHERE nome = ?;";
+                $prep = $db->prepare($sql);
+                $result = $prep->execute(array($supercat));
                 $count = $result->fetchColumn();
                 if(!testParent($supercat, $db, $subcat)) {
                     if ($count > 0) {
@@ -44,19 +46,19 @@
                         $sql = "DELETE FROM categoria_simples WHERE nome=?;";
                         $prep = $db->prepare($sql);
                         echo("<p>Apagar <b>$supercat</b> de <b>categoria_simples</b>:</p>");
-                        echo("<p>$sql</p>");
+                        echo("<p>DELETE FROM categoria_simples WHERE nome=$supercat;</p>");
                         $prep->execute(array($supercat));
 
                         $sql = "INSERT INTO super_categoria VALUES (?);";
                         $prep = $db->prepare($sql);
                         echo("<p>Adicionar <b>$supercat</b> a <b>super_categoria</b>:</p>");
-                        echo("<p>$sql</p>");
+                        echo("<p>INSERT INTO super_categoria VALUES ($supercat);</p>");
                         $prep->execute(array($supercat));
                     }
                     $sql = "INSERT INTO constituida VALUES (?, ?);";
                     $prep = $db->prepare($sql);
                     echo("<p>Adicionar nova subcategoria <b>$subcat</b> a <b>$supercat</b>:</p>");
-                    echo("<p>$sql</p>");
+                    echo("<p>INSERT INTO constituida VALUES ($supercat, $subcat);</p>");
                     $prep->execute(array($supercat, $subcat));
                 }
                 else {

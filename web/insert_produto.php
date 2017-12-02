@@ -33,7 +33,7 @@
                 
                 echo("<p>Adicionando novo fornecedor secundário para o produto $design (EAN = $ean):</p>");
                 $prep->execute(array($forn_sec, $ean));
-                echo("<p>$sql</p>");
+                echo("<p>INSERT INTO fornece_sec VALUES ($forn_sec, $ean);</p>");
 
                 $db->query("commit;");
                 $db = null;

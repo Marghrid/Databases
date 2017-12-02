@@ -18,26 +18,30 @@
 
                 $db->query("start transaction;");
 
-                $sql = "DELETE FROM fornece_sec WHERE ean='$ean';";
+                $sql = "DELETE FROM fornece_sec WHERE ean=?;";
                 echo("<p>Removing <b>$ean</b> from <b>fornece_sec</b>:</p>");
-                echo("<p>$sql</p>");
-                $db->query($sql);
+                echo("<p>DELETE FROM fornece_sec WHERE ean=$ean;</p>");
+                $prep = $db->prepare($sql);
+                $prep->execute(array($ean));
 
-                $sql = "DELETE FROM reposicao WHERE ean='$ean';";
+                $sql = "DELETE FROM reposicao WHERE ean=?;";
                 echo("<p>Removing <b>$ean</b> from <b>reposicao</b>:</p>");
-                echo("<p>$sql</p>");
-                $db->query($sql);
+                echo("<p>DELETE FROM reposicao WHERE ean=$ean;</p>");
+                $prep = $db->prepare($sql);
+                $prep->execute(array($ean));
 
-                $sql = "DELETE FROM planograma WHERE ean='$ean';";
+                $sql = "DELETE FROM planograma WHERE ean=?;";
                 echo("<p>Removing <b>$ean</b> from <b>planograma</b>:</p>");
-                echo("<p>$sql</p>");
-                $db->query($sql);
+                echo("<p>DELETE FROM planograma WHERE ean=$ean;</p>");
+                $prep = $db->prepare($sql);
+                $prep->execute(array($ean));
 
-                $sql = "DELETE FROM produto WHERE ean='$ean';";
+                $sql = "DELETE FROM produto WHERE ean=?;";
                 echo("<p>Removing <b>$ean</b> from <b>produto</b>:</p>");
-                echo("<p>$sql</p>");
+                echo("<p>DELETE FROM planograma WHERE ean=$ean;</p>");
 
-                $db->query($sql);
+                $prep = $db->prepare($sql);
+                $prep->execute(array($ean));
 
                 $db->query("commit;");
 

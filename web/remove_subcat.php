@@ -23,28 +23,32 @@
                 // Nome da subcategoria de $nome_categoria se só houver uma.
                 $sql = "SELECT COUNT(categoria)
                         FROM constituida
-                        WHERE super_categoria = '$nome_categoria'
+                        WHERE super_categoria = ?
                         GROUP BY super_categoria;";
-                $result = $db->query($sql);
+                $prep = $db->prepare($sql);
+                $result = $prep->execute(array($nome_categoria));
                 $count = $result->fetchColumn();
                 
-                $sql = "DELETE FROM constituida WHERE super_categoria='$nome_categoria' AND categoria = '$nome_subcategoria';";
+                $sql = "DELETE FROM constituida WHERE super_categoria=? AND categoria = ?;";
                 echo("<p>Removing '$nome_subcategoria' from '$nome_categoria':</p>");
-                echo("<p>$sql</p>");
-                $db->query($sql);
+                echo("<p>DELETE FROM constituida WHERE super_categoria=$nome_categoria AND categoria = $nome_subcategoria;</p>");
+                $prep = $db->prepare($sql);
+                $prep->execute(array($nome_categoria, $nome_subcategoria));
 
                 if($count == 1) {
                     echo("<p>$nome_subcategoria era a única subcategoria de $nome_categoria:</p>");
 
-                    $sql = "DELETE FROM super_categoria WHERE nome='$nome_categoria';";
+                    $sql = "DELETE FROM super_categoria WHERE nome = ?;";
                     echo("<p>Removing '$nome_categoria' from super_categoria:</p>");
-                    echo("<p>$sql</p>");
-                    $db->query($sql);
+                    echo("<p>DELETE FROM super_categoria WHERE nome = $nome_categoria;</p>");
+                    $prep = $db->prepare($sql);
+                    $prep->execute(array($nome_categoria));
 
-                    $sql = "INSERT INTO categoria_simples VALUES ('$nome_categoria');";
+                    $sql = "INSERT INTO categoria_simples VALUES (?);";
                     echo("<p>Inserting '$nome_categoria' into categoria_simples:</p>");
-                    echo("<p>$sql</p>");
-                    $db->query($sql);
+                    echo("<p>INSERT INTO categoria_simples VALUES ($nome_categoria);</p>");
+                    $prep = $db->prepare($sql);
+                    $prep->execute(array($nome_categoria));
                 }
 
                 $db->commit();

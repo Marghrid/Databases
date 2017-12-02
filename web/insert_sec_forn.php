@@ -27,7 +27,7 @@
                 $prep = $db->prepare($sql);
 
                 echo("<p>Adicionar <b>'$forn_sec'</b> como fornecedor secundário do produto <b>$design</b>(ean = <b>$ean</b>)</p>");
-                echo("<p>$sql</p>");
+                echo("<p>INSERT INTO fornece_sec VALUES ($forn_sec, $ean);</p>");
 
                 $prep->execute(array($forn_sec, $ean));
 

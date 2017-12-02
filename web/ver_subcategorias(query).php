@@ -22,7 +22,7 @@
         $sql = "SELECT super_categoria, categoria FROM constituida where super_categoria=?;";
         $prep = $db->prepare($sql);
 
-        $prep->execute(array($supercategoria));
+        $result = $prep->execute(array($supercategoria));
         
         echo("<tr>\n");
         echo("<th>Super-categoria direta</th>\n");
@@ -53,7 +53,7 @@
                     WHERE super_categoria = ?
                 );";
         $prep = $db->prepare($sql);
-        $prep->execute(array($supercategoria, $supercategoria));
+        $result = $prep->execute(array($supercategoria, $supercategoria));
 
         foreach($result as $row)
         {

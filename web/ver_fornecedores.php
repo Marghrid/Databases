@@ -17,9 +17,10 @@
             $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "SELECT forn_primario, nome
-                    FROM (SELECT forn_primario FROM produto WHERE ean = $ean) AS prod_nif
+                    FROM (SELECT forn_primario FROM produto WHERE ean = ?) AS prod_nif
                         INNER JOIN fornecedor ON prod_nif.forn_primario=fornecedor.nif;";
-            $result = $db->query($sql);
+            $prep = $db->prepare($sql);
+            $result = $prep->execute(array($ean));
             echo("<h3>Fornecedores do produto (EAN = $ean, designação = '$design', fornecedor primário = '$forn_prim'):</h3>");
             echo("<h3>Primário:</h3>");
             echo("<table>\n");
@@ -42,8 +43,9 @@
             $sql = "SELECT nif, nome
                     FROM  fornece_sec
                         NATURAL JOIN fornecedor
-                    WHERE ean='$ean';";
-            $result = $db->query($sql);
+                    WHERE ean = ?;";
+            $prep = $db->prepare($sql);
+            $result = $prep->execute(array($ean));
 
             echo("<h3>Secundários:</h3>");
             echo("<table>\n");

@@ -18,8 +18,9 @@
                 $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 
-           		$sql = "SELECT * FROM planograma WHERE ean='$ean';";
-                $result = $db->query($sql);
+           		$sql = "SELECT * FROM planograma WHERE ean = ?;";
+				$prep = $db->prepare($sql);
+                $result = $prep->execute(array($ean));
                 $count = $result->rowCount();
                 if($count > 0) {
             		echo "<p>Serão elimindas as seguintes entradas do planograma:</p>";
@@ -48,8 +49,9 @@
             	    echo("</table>\n");
             	}
 
-                $sql = "SELECT * FROM reposicao WHERE ean='$ean';";
-                $result = $db->query($sql);
+                $sql = "SELECT * FROM reposicao WHERE ean = ?;";
+				$prep = $db->prepare($sql);
+                $result = $prep->execute(array($ean));
                 $count = $result->rowCount();
                 if($count > 0) {
             		echo "<p>Serão elimindas as seguintes reposições:</p>";
