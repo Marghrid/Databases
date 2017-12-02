@@ -39,7 +39,6 @@
                         WHERE nome = ?;";
                 $prep = $db->prepare($sql);
                 $prep->execute(array($supercat));
-                $result = $prep->fetchAll();
                 $count = $prep->fetchColumn();
                 if(!testParent($supercat, $db, $subcat)) {
                     if ($count > 0) {
