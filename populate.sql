@@ -79,7 +79,7 @@ INSERT INTO fornecedor VALUES
 INSERT INTO produto VALUES
 (1234567890123, 'Delta Q SuperExpress', 		'Maquina de cafe',		 	323556789, '2017-01-11'),
 (2345678901231, 'Whiskas saquetas',     		'Comida de gato',  		 	131242353, '2016-08-12'),
-(2934875401231, 'Hills Sago 30kg',       		'Comida de cao',  		 	131242353, '2016-08-12'),
+(2934875401231, 'Hills Saco 30kg',       		'Comida de cao',  		 	131242353, '2016-08-12'),
 (3456789012312, 'Leite meio gordo Mimosa',     	'Leite',     			 	111222333, '2017-06-11'),
 (3456789032312, 'Iogurte aromas Agros',    		'Iogurte',    			  	423453686, '2016-03-11'),
 (3456785062712, 'Queijo da Serra da Estrela',   'Queijo',     			 	321232343, '2017-09-11'),

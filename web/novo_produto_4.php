@@ -14,7 +14,7 @@
         {
             $host = "db.ist.utl.pt";
             $user ="ist180832";
-            $password = "carreiracarreira";
+            $password = "G42SupermarketBD";
             $dbname = $user;
         
             $db = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
