@@ -71,7 +71,7 @@
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
 
-            echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
+            echo("<p><a href=\"index.php\">Ver supermercado</a></p>");
 
         ?>
     </body>

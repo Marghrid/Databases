@@ -7,7 +7,7 @@
         <h3>Adicionar nova categoria:</h3>
         <form action="insert_cat.php" method="post">
             <p>Nome da categoria: <input type="text" name="nome_cat"/></p>
-            <p><input type="submit" value="Adicionar"/> <a href="supermercado.php">Cancelar</a></p>
+            <p><input type="submit" value="Adicionar"/> <a href="index.php">Cancelar</a></p>
         </form>
     </body>
 </html>

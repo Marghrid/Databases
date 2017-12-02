@@ -9,7 +9,7 @@
             <p><input type="hidden" name="ean" value="<?=$_REQUEST['ean']?>"/></p>
             <p><input type="hidden" name="design" value="<?=$_REQUEST['design']?>"/></p>
             <p>Nova designação: <input type="text" name="design"/></p>
-            <p><input type="submit" value="Alterar"/> <a href="supermercado.php">Cancelar</a></p>
+            <p><input type="submit" value="Alterar"/> <a href="index.php">Cancelar</a></p>
         </form>
     </body>
 </html>

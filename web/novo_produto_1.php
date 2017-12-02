@@ -21,7 +21,7 @@
             <!--<p>Data: <input type="date" name="data"/></p>-->
             <p>
             	<input type="submit" value="Continuar"/>
-            	<a href="supermercado.php">Cancelar</a>
+            	<a href="index.php">Cancelar</a>
             </p>
         </form>
     </body>

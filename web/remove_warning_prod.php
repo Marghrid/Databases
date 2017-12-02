@@ -87,7 +87,7 @@
         ?>
         <form action="remove_prod.php" method="post">
             <p><input type="hidden" name="ean" value="<?=$_REQUEST['ean']?>"/></p>
-            <p><input type="submit" value="Confirmar"/> <a href="supermercado.php">Cancelar</a></p>
+            <p><input type="submit" value="Confirmar"/> <a href="index.php">Cancelar</a></p>
         </form>
     </body>
 </html>

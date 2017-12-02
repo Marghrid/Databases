@@ -61,7 +61,7 @@
                 $nome_categoria = '';
             }
 
-            echo("<p><a href=\"supermercado.php\">Ver supermercado</a> &nbsp 
+            echo("<p><a href=\"index.php\">Ver supermercado</a> &nbsp 
                 <a href=\"ver_subcategorias.php?nome_categoria=$nome_cat_escolhida\"> Voltar a subcategorias de <b>$nome_cat_escolhida</b></a>");
             if($nome_categoria!='')
             {

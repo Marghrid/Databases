@@ -71,7 +71,7 @@
                 $db->query("rollback;");
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
-            echo("<p><a href=\"supermercado.php\">Ver supermercado</a> &nbsp 
+            echo("<p><a href=\"index.php\">Ver supermercado</a> &nbsp 
                 <a href=\"ver_subcategorias.php?nome_categoria=$supercat\"> Voltar a subcategorias</a></p>");
         ?>
     </body>

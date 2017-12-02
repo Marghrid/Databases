@@ -47,7 +47,7 @@ WHERE NOT EXISTS (
 	FROM categoria_simples c
 	WHERE NOT EXISTS(
 		SELECT categoria
-		FROM fornece_sec NATURAL JOIN produto--INNER JOIN categoria_simples ON produto.categoria=categoria_simples.nome
+		FROM fornece_sec NATURAL JOIN produto
 		WHERE (produto.forn_primario=fp.nif
 			AND produto.categoria = c.nome)
 		OR (fornece_sec.nif=fp.nif

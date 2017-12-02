@@ -52,7 +52,7 @@
                 $db->query("rollback;");
                 echo("<p>ERROR: {$e->getMessage()}</p>");
             }
-            echo("<p><a href=\"supermercado.php\">Voltar</a></p>");
+            echo("<p><a href=\"index.php\">Voltar</a></p>");
         ?>
     </body>
 </html>

@@ -39,7 +39,7 @@
             }
             echo("<p><a href=\"ver_fornecedores.php?ean=$ean&design=$design&forn_prim=$forn_prim\"> Voltar</a></p>");
             
-            echo("<p><a href=\"supermercado.php\">Ver supermercado</a></p>");
+            echo("<p><a href=\"index.php\">Ver supermercado</a></p>");
         ?>
     </body>
 </html>

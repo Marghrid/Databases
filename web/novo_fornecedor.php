@@ -10,7 +10,7 @@
             <p><input type="hidden" name="nome" value="<?=$_REQUEST['nome']?>"/></p>
             <p>NIF: <input type="text" name="nif"/></p>
             <p>Nome: <input type="text" name="nome"/></p>
-            <p><input type="submit" value="Adicionar"/> <a href="supermercado.php">Cancelar</a></p>
+            <p><input type="submit" value="Adicionar"/> <a href="index.php">Cancelar</a></p>
         </form>
     </body>
 </html>
