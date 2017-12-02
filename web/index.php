@@ -32,7 +32,7 @@
                 echo "<th>Designação</th>\n";
                 echo "<th>Categoria</th>\n";
                 echo "<th>Fornecedor <br>Primário</th>\n";
-                echo "<th>Data do primeiro <br> fornecimento</th>\n";
+                echo "<th>Data de inserção</th>\n";
                 echo "<th colspan=4>Opções</th>\n";
                 echo "</tr>\n";
                 
