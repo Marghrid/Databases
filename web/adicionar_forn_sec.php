@@ -26,7 +26,8 @@
                         WHERE (nif NOT IN (SELECT nif FROM fornece_sec WHERE ean=?))
                          AND (nif != ?);";
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($ean, $forn_prim));
+                $prep->execute(array($ean, $forn_prim));
+                $result = $prep->fetchAll();
 
                 echo("<table>\n");
                 echo("<th>NIF</th>\n");

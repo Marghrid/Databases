@@ -17,10 +17,11 @@
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-                $sql = "SELECT super_categoria FROM constituida WHERE categoria = ?";
+                $sql = "SELECT super_categoria FROM constituida WHERE categoria =?";
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($nome_categoria));
-                $count = $result->rowCount();
+                $prep->execute(array($nome_categoria));
+                $result = $prep->fetchAll();
+                $count = $prep->rowCount();
                 
                 if($count > 0) {
                     echo "<p>Não é possível remover $nome_categoria porque está registada como subcategoria de:</p>";

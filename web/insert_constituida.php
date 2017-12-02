@@ -11,7 +11,8 @@
             function testParent($cat, $db, $goal) {
                 $sql = "SELECT super_categoria, categoria FROM constituida WHERE categoria=?;";
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($cat));
+                $prep->execute(array($cat));
+                $result = $prep->fetchAll();
                 foreach($result as $row)
                 {
                     $super_categoria = $row['super_categoria'];
@@ -37,8 +38,9 @@
                         FROM categoria_simples
                         WHERE nome = ?;";
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($supercat));
-                $count = $result->fetchColumn();
+                $prep->execute(array($supercat));
+                $result = $prep->fetchAll();
+                $count = $prep->fetchColumn();
                 if(!testParent($supercat, $db, $subcat)) {
                     if ($count > 0) {
 

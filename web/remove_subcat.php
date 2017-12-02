@@ -26,8 +26,9 @@
                         WHERE super_categoria = ?
                         GROUP BY super_categoria;";
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($nome_categoria));
-                $count = $result->fetchColumn();
+                $prep->execute(array($nome_categoria));
+                $result = $prep->fetchAll();
+                $count = $prep->fetchColumn();
                 
                 $sql = "DELETE FROM constituida WHERE super_categoria=? AND categoria = ?;";
                 echo("<p>Removing '$nome_subcategoria' from '$nome_categoria':</p>");

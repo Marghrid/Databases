@@ -20,8 +20,9 @@
                 
            		$sql = "SELECT * FROM planograma WHERE ean = ?;";
 				$prep = $db->prepare($sql);
-                $result = $prep->execute(array($ean));
-                $count = $result->rowCount();
+				$prep->execute(array($ean));
+				$result = $prep->fetchAll();
+                $count = $prep->rowCount();
                 if($count > 0) {
             		echo "<p>Serão elimindas as seguintes entradas do planograma:</p>";
             	    echo("<table>\n");
@@ -51,8 +52,9 @@
 
                 $sql = "SELECT * FROM reposicao WHERE ean = ?;";
 				$prep = $db->prepare($sql);
-                $result = $prep->execute(array($ean));
-                $count = $result->rowCount();
+				$prep->execute(array($ean));
+				$result = $prep->fetchAll();
+                $count = $prep->rowCount();
                 if($count > 0) {
             		echo "<p>Serão elimindas as seguintes reposições:</p>";
       	            echo("<table>\n");

@@ -30,7 +30,8 @@
                         ORDER BY nome;";
 
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($supercategoria, $supercategoria));
+                $prep->execute(array($supercategoria, $supercategoria));
+                $result = $prep->fetchAll();
 
                 echo("<h3>Qual das categorias quer adicionar como
                     subcategoria de $supercategoria?</h3>");

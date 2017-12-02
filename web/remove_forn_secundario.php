@@ -22,8 +22,8 @@
                         FROM fornece_sec
                         WHERE ean = ?;";
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($ean));
-                $count = $result->fetchColumn();
+                $prep->execute(array($ean));
+                $count = $prep->fetchColumn();
                 
                 if($count == 1) {
                     echo "<p>Não é possível remover o último fornecedor secundário de um produto.</p>";

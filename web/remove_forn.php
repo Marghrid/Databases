@@ -21,7 +21,8 @@
                 $sql = "SELECT COUNT(*) AS count FROM produto WHERE forn_primario = ?;";
 
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($nif));
+                $prep->execute(array($nif));
+                $result = $prep->fetchAll();
                 foreach($result as $row)
                 {
                     $count = $row['count'];
@@ -32,7 +33,8 @@
                     $sql = "SELECT ean, design FROM produto WHERE forn_primario = ?;";
                     echo("<p>O fornecedor não pode ser removido porque é fornecedor primário de:</p>\n");
                     $prep = $db->prepare($sql);
-                    $result = $prep->execute(array($nif));
+                    $prep->execute(array($nif));
+                    $result = $prep->fetchAll();
 
                     echo("<table>\n");
                     echo("<tr>\n");

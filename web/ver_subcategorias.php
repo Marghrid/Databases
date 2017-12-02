@@ -10,7 +10,8 @@
     function print_all_subcats($cat, $indent, $db, $cat_escolhida) {
     	$sql = "SELECT super_categoria, categoria FROM constituida where super_categoria=?;";
         $prep = $db->prepare($sql);
-        $result = $prep->execute(array($cat));
+        $prep->execute(array($cat));
+        $result = $prep->fetchAll();
         foreach($result as $row)
         {
         	$subcat = $row['categoria'];

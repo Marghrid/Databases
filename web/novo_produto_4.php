@@ -26,8 +26,9 @@
                     WHERE nif != ?;";
             
             $prep = $db->prepare($sql);
-            $result = $prep->execute(array($forn_prim));
-    
+            $prep->execute(array($forn_prim));
+            $result = $prep->fetchAll();
+
             echo("<h3>Escolha um fornecedor secundário para '$design' (EAN = $ean):</h3>");
     
             echo("<table>\n");

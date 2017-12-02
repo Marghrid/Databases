@@ -27,7 +27,8 @@
                             AND (nif != ?);";
                 
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($ean, $forn_prim));
+                $prep->execute(array($ean, $forn_prim));
+                $result = $prep->fetchAll();
 
                 echo("<table>\n");
                 echo("<tr>\n");
@@ -46,7 +47,8 @@
                         WHERE nif IN (SELECT nif FROM fornece_sec WHERE ean=?);";
                 
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($ean));
+                $prep->execute(array($ean));
+                $result = $prep->fetchAll();
 
                 foreach($result as $row)
                 {

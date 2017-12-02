@@ -19,7 +19,8 @@
 
                 $sql = "SELECT * FROM reposicao WHERE ean=?;";
                 $prep = $db->prepare($sql);
-                $result = $prep->execute(array($ean));
+                $prep->execute(array($ean));
+                $result = $prep->fetchAll();
 
                 echo("<h3>Reposições do produto <b>$design</b> (EAN = $ean):</h3>");
                 echo("<table>\n");
