@@ -54,7 +54,7 @@
                 {
                     echo("<tr>\n");
                     echo("<td><a href=update_forn_prim_prod.php?ean=$ean&novo_forn_prim={$row['nif']}&is_sec=yes>{$row['nif']}</a></td>\n");
-                    echo("<td>{$row['nome']}</td>\n");
+                    echo("<td>{$row['nome']} (será removido como secundário)</td>\n");
                     echo("</tr>\n");
                 }
                 echo("</table>\n");
