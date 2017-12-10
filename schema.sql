@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS categoria;
 DROP TYPE IF EXISTS tipo_lado;
 DROP TYPE IF EXISTS tipo_altura;
 
-
 CREATE TYPE tipo_lado   AS ENUM ('direito', 'esquerdo');
 CREATE TYPE tipo_altura AS ENUM ('chao', 'medio', 'superior');
 
@@ -76,6 +75,7 @@ CREATE TABLE fornece_sec(
         --  relações que este tem com fornecedores secundários
 );
 
+
 CREATE TABLE corredor(
     nro     SMALLINT  NOT NULL CHECK(nro > 0),
         -- o supermercado tem menos de 32767 corredores, e a numeracao começa no 1
@@ -131,3 +131,21 @@ CREATE TABLE reposicao(
     FOREIGN KEY (ean, nro, lado, altura) REFERENCES  planograma(ean, nro, lado, altura),
     FOREIGN KEY (operador, instante)     REFERENCES  evento_reposicao(operador, instante) ON DELETE CASCADE
 );
+
+CREATE OR REPLACE FUNCTION check_forn_sec_proc()
+RETURNS TRIGGER AS $BODY$
+BEGIN
+    IF EXISTS(SELECT nif
+              FROM fornece_sec
+              WHERE fornece_sec.nif = NEW.forn_primario
+              AND NEW.ean = fornece_sec.ean)
+    THEN
+        RAISE EXCEPTION '% é fornecedor secundario de %', NEW.forn_primario, NEW.ean
+        USING HINT = 'Remova como fornecedor secundario do produto';
+    END IF;
+    RETURN NEW;
+END;
+$BODY$  LANGUAGE    plpgsql;
+
+CREATE TRIGGER check_forn_sec BEFORE UPDATE ON produto
+FOR EACH ROW EXECUTE PROCEDURE check_forn_sec_proc();
