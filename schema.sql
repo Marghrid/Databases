@@ -147,5 +147,24 @@ BEGIN
 END;
 $BODY$  LANGUAGE    plpgsql;
 
+CREATE OR REPLACE FUNCTION check_forn_prim_proc() 
+RETURNS TRIGGER AS $BODY$ 
+BEGIN 
+    IF EXISTS(SELECT forn_primario 
+              FROM produto 
+              WHERE produto.forn_primario = NEW.nif 
+              AND NEW.ean = produto.ean) 
+    THEN 
+        RAISE EXCEPTION '% é fornecedor primário de %', NEW.nif, NEW.ean 
+        USING HINT = 'Altere o fornecedor primario do produto'; 
+    END IF; 
+    RETURN NEW; 
+END; 
+$BODY$ LANGUAGE plpgsql;
+
+
 CREATE TRIGGER check_forn_sec BEFORE UPDATE ON produto
 FOR EACH ROW EXECUTE PROCEDURE check_forn_sec_proc();
+
+CREATE TRIGGER check_forn_prim BEFORE UPDATE ON fornece_sec 
+FOR EACH ROW EXECUTE PROCEDURE check_forn_prim_proc();
