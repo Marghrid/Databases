@@ -140,7 +140,7 @@ BEGIN
               WHERE fornece_sec.nif = NEW.forn_primario
               AND NEW.ean = fornece_sec.ean)
     THEN
-        RAISE EXCEPTION '% é fornecedor secundario de %', NEW.forn_primario, NEW.ean
+        RAISE EXCEPTION '% e fornecedor secundario de %', NEW.forn_primario, NEW.ean
         USING HINT = 'Remova como fornecedor secundario do produto';
     END IF;
     RETURN NEW;
@@ -155,7 +155,7 @@ BEGIN
               WHERE produto.forn_primario = NEW.nif 
               AND NEW.ean = produto.ean) 
     THEN 
-        RAISE EXCEPTION '% é fornecedor primário de %', NEW.nif, NEW.ean 
+        RAISE EXCEPTION '% e fornecedor primario de %', NEW.nif, NEW.ean 
         USING HINT = 'Altere o fornecedor primario do produto'; 
     END IF; 
     RETURN NEW; 
