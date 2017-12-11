@@ -35,7 +35,7 @@
                 foreach($result as $row)
                 {
                     echo("<tr>\n");
-                    echo("<td><a href=insert_sec_forn.php?forn_prim=$forn_prim&forn_sec={$row['nif']}&ean=$ean>{$row['nif']}&design=$design</a></td>\n");
+                    echo("<td><a href=insert_sec_forn.php?forn_prim=$forn_prim&forn_sec={$row['nif']}&ean=$ean>{$row['nif']}</a></td>\n");
                     echo("<td>{$row['nome']}</td>\n");
                     echo("</tr>\n");
                 }
