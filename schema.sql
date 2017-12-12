@@ -140,7 +140,8 @@ BEGIN
               WHERE fornece_sec.nif = NEW.forn_primario
               AND NEW.ean = fornece_sec.ean)
     THEN
-        RAISE EXCEPTION '% e fornecedor secundario de %', NEW.forn_primario, NEW.ean
+        RAISE EXCEPTION '% e fornecedor secundario de %',
+        	NEW.forn_primario, NEW.ean
         USING HINT = 'Remova como fornecedor secundario do produto';
     END IF;
     RETURN NEW;
@@ -169,5 +170,6 @@ FOR EACH ROW EXECUTE PROCEDURE check_forn_sec_proc();
 CREATE TRIGGER check_forn_prim BEFORE UPDATE ON fornece_sec 
 FOR EACH ROW EXECUTE PROCEDURE check_forn_prim_proc();
 
-CREATE INDEX prod_forn_prim_idx ON produto USING hash (forn_primario);
-CREATE INDEX prod_categoria_idx ON produto USING hash (categoria);
+CREATE INDEX prod_forn_prim_idx ON produto     USING hash (forn_primario);
+CREATE INDEX prod_categoria_idx ON produto     USING hash (categoria);
+CREATE INDEX forn_sec_ean       ON fornece_sec USING hash (ean);
