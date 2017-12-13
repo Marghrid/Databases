@@ -146,7 +146,7 @@ BEGIN
     END IF;
     RETURN NEW;
 END;
-$BODY$  LANGUAGE    plpgsql;
+$BODY$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION check_forn_prim_proc() 
 RETURNS TRIGGER AS $BODY$ 
@@ -173,3 +173,4 @@ FOR EACH ROW EXECUTE PROCEDURE check_forn_prim_proc();
 CREATE INDEX prod_forn_prim_idx ON produto     USING hash (forn_primario);
 CREATE INDEX prod_categoria_idx ON produto     USING hash (categoria);
 CREATE INDEX forn_sec_ean       ON fornece_sec USING hash (ean);
+
