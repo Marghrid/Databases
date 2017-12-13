@@ -62,7 +62,7 @@ INSERT INTO constituida VALUES
 INSERT INTO fornecedor VALUES
 (010010010, 'Siemens'),
 (111222333, 'Mimosa'),
-(321232343, 'Quinta do Manel'),
+(123455678, 'Quinta do Manel'),
 (131242353, 'Whiskas'),
 (423456789, 'A outra cadeia de supermercados'),
 (123456788, 'fornecedor01'),
@@ -77,23 +77,23 @@ INSERT INTO fornecedor VALUES
 (123000759, 'fornecedor10');
 
 INSERT INTO produto VALUES
-(1234567890123, 'Delta Q SuperExpress', 		'Maquina de cafe',		 	323556789, '2017-01-11'),
-(2345678901231, 'Whiskas saquetas',     		'Comida de gato',  		 	131242353, '2016-08-29'),
-(2934875401231, 'Hills Saco 30kg',       		'Comida de cao',  		 	131242353, '2016-08-12'),
-(3456789012312, 'Leite meio gordo Mimosa',     	'Leite',     			 	111222333, '2017-06-22'),
-(3456789032312, 'Iogurte aromas Agros',    		'Iogurte',    			  	423453686, '2016-03-11'),
-(3456785062712, 'Queijo da Serra da Estrela',   'Queijo',     			 	321232343, '2017-09-13'),
-(3356485562712, 'Siemens SuperClothesCleaner',	'Maquina de lavar roupa',	010010010, '2015-04-11'),
-(3496785072712, 'Maquina roupa X530-ABB',		'Maquina de lavar roupa',	224456789, '2015-10-23'),
-(3456485662912, 'Maca Royal Gala',				'Fruta',					321232343, '2016-02-06'),
-(3456785056712, 'Pera Rocha',					'Fruta',					321232343, '2015-07-11'),
-(2456385062612, 'Clementina XPTO',				'Fruta',					321232343, '2015-05-15'),
-(6456785069611, 'Laranja do Algarve',			'Fruta',					321232343, '2017-01-01'),
-(6987654429611, 'Escova dos dentes BShiny',		'Produto Higienico',		123365789, '2016-12-29'),
-(6087645785321, 'Bolinhas de agua 6 un.',		'Pao de trigo',     		423835788, '2017-12-01'),
-(9876543247611, 'Pao de centeio XL',			'Pao de centeio',   		423835788, '2015-11-30'),
-(7534579969611, 'Bimbo superfofo sem codea',	'Pao de forma',				423835788, '2017-06-23'),
-(6324797652346, 'Bolo de anos Frozen',			'Bolo de anos',				123451689, '2016-02-10');
+(1234567890123, 'Delta Q SuperExpress',         'Maquina de cafe',          323556789, '2017-01-11'),
+(2345678901231, 'Whiskas saquetas',             'Comida de gato',           131242353, '2016-08-29'),
+(2934875401231, 'Hills Saco 30kg',              'Comida de cao',            131242353, '2016-08-12'),
+(3456789012312, 'Leite meio gordo Mimosa',      'Leite',                    111222333, '2017-06-22'),
+(3456789032312, 'Iogurte aromas Agros',         'Iogurte',                  423453686, '2016-03-11'),
+(3456785062712, 'Queijo da Serra da Estrela',   'Queijo',                   123455678, '2017-09-13'),
+(3356485562712, 'Siemens SuperClothesCleaner',  'Maquina de lavar roupa',   010010010, '2015-04-11'),
+(3496785072712, 'Maquina roupa X530-ABB',       'Maquina de lavar roupa',   224456789, '2015-10-23'),
+(3456485662912, 'Maca Royal Gala',              'Fruta',                    123455678, '2016-02-06'),
+(3456785056712, 'Pera Rocha',                   'Fruta',                    123455678, '2015-07-11'),
+(2456385062612, 'Clementina XPTO',              'Fruta',                    123455678, '2015-05-15'),
+(6456785069611, 'Laranja do Algarve',           'Fruta',                    123455678, '2017-01-01'),
+(6987654429611, 'Escova dos dentes BShiny',     'Produto Higienico',        123365789, '2016-12-29'),
+(6087645785321, 'Bolinhas de agua 6 un.',       'Pao de trigo',             423835788, '2017-12-01'),
+(9876543247611, 'Pao de centeio XL',            'Pao de centeio',           423835788, '2015-11-30'),
+(7534579969611, 'Bimbo superfofo sem codea',    'Pao de forma',             423835788, '2017-06-23'),
+(6324797652346, 'Bolo de anos Frozen',          'Bolo de anos',             123451689, '2016-02-10');
 
 INSERT INTO fornece_sec VALUES
 (123365789, 3456789032312), --fornecedor04 Iogurte aromas Agros
