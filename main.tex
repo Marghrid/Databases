@@ -1,0 +1,260 @@
+\documentclass[12pt]{extarticle}
+%\usepackage[utf8]{inputenc} % Não sei porque é que ele refila com isto. Ignora porque ja e default da engine? Mas nos outros documentos que eu escrevi nunca refilou!
+\usepackage[portuges]{babel}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage[a4paper,
+            top=2.2cm,
+            bottom=2.2cm,
+            left=1.8cm,
+            right=1.8cm]{geometry}
+\usepackage{fontspec}
+\setmonofont[Scale=0.8]{Courier}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage{titling}
+
+\lstset{upquote=true,
+		language=SQL,
+        showspaces=false,
+        showstringspaces=false,
+        inputencoding=utf8,
+        extendedchars=true,
+        basicstyle=\ttfamily,
+        tabsize=4,
+        commentstyle=\color{gray}}
+
+
+\title{\Huge Projeto de Bases de Dados \\ \LARGE Parte 4}
+\date {\Large Dezembro 2017}
+\author{}
+\begin{document}
+\begin{titlingpage}
+\maketitle
+
+\vfill
+
+\begin{table}[ht]
+\centering \Large
+\begin{tabular}{rccc}
+\hline
+\rowcolor[HTML]{656565} 
+{\color[HTML]{FFFFFF} \textbf{Número}}
+	& {\color[HTML]{FFFFFF} \textbf{Nome}}
+    & {\color[HTML]{FFFFFF} \textbf{Contribuição}}
+    & {\color[HTML]{FFFFFF} \textbf{Esforço}}\\ 
+
+\hline
+\rowcolor[HTML]{FAFAFA} 
+\multicolumn{1}{|r|}{\cellcolor[HTML]{FAFAFA}76221}
+	& \multicolumn{1}{c|}{\cellcolor[HTML]{FAFAFA}Emanuel Pereira}
+    & \multicolumn{1}{c|}{\cellcolor[HTML]{FAFAFA}10\%}
+    & \multicolumn{1}{c|}{\cellcolor[HTML]{FAFAFA}$2$ horas}\\
+    
+\hline
+\multicolumn{1}{|r|}{80832}
+	& \multicolumn{1}{c|}{Margarida Ferreira}
+    & \multicolumn{1}{c|}{50\%}
+    & \multicolumn{1}{c|}{6 horas}\\
+
+\hline
+\rowcolor[HTML]{FAFAFA} 
+\multicolumn{1}{|r|}{\cellcolor[HTML]{FAFAFA}83532}
+	& \multicolumn{1}{c|}{\cellcolor[HTML]{FAFAFA}Miguel Marques}
+    & \multicolumn{1}{c|}{\cellcolor[HTML]{FAFAFA}40\%}
+    & \multicolumn{1}{c|}{\cellcolor[HTML]{FAFAFA}4 horas}\\
+
+\hline
+\end{tabular}
+\label{my-label}
+\end{table}
+
+\vfill
+
+{\LARGE Grupo 42},\par
+{\Large
+Turno BD2251795L07 (4ª feira, 11h),\par
+Professor Miguel Amaral\par}
+\end{titlingpage}
+
+\section{Restrições de Integridade}
+\noindent\textbf{a)  O fornecedor (primário) de um produto não pode existir na relação fornece\textunderscore sec para o mesmo produto:}\par
+
+A restrição é garantida com recurso a dois \textit{triggers}, um sobre a tabela \texttt{produto} e outro sobre a tabela \texttt{fornece\_sec}. \par
+
+O primeiro, sobre a tabela \texttt{produto} impede que seja adicionado a um produto um fornecedor primário que já esteja registado como secundário para o mesmo produto (ou seja, existe uma entrada na tabela \texttt{fornece\_sec} para esse fornecedor e produto), quer na criação de uma nova entrada na tabela, quer na alteração de uma já existente.\par
+
+O segundo \textit{trigger}, sobre a tabela \texttt{fornece\_sec} impede que seja adicionado como fornecedor secundário o fornecedor primário de um produto, seja através da adição de uma nova entrada na tabela ou da atualização de uma entrada já existente.\par
+
+Estes \textit{triggers} são adicionados à base de dados através do seguinte troço de código:\par
+
+\begin{lstlisting}
+CREATE OR REPLACE FUNCTION check_forn_sec_proc()
+RETURNS TRIGGER AS $BODY$
+BEGIN
+    IF EXISTS(SELECT nif
+              FROM fornece_sec
+              WHERE fornece_sec.nif = NEW.forn_primario
+              AND NEW.ean = fornece_sec.ean)
+    THEN
+        RAISE EXCEPTION '% e fornecedor secundario de %',
+        	NEW.forn_primario, NEW.ean
+        USING HINT = 'Remova como fornecedor secundario do produto';
+    END IF;
+    RETURN NEW;
+END;
+$BODY$  LANGUAGE    plpgsql;
+
+CREATE OR REPLACE FUNCTION check_forn_prim_proc() 
+RETURNS TRIGGER AS $BODY$ 
+BEGIN 
+    IF EXISTS(SELECT forn_primario 
+              FROM produto 
+              WHERE produto.forn_primario = NEW.nif 
+              AND NEW.ean = produto.ean) 
+    THEN 
+        RAISE EXCEPTION '% e fornecedor primario de %', NEW.nif, NEW.ean 
+        USING HINT = 'Altere o fornecedor primario do produto'; 
+    END IF; 
+    RETURN NEW; 
+END; 
+$BODY$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_forn_sec
+BEFORE INSERT OR UPDATE ON produto
+FOR EACH ROW EXECUTE PROCEDURE check_forn_sec_proc();
+
+CREATE TRIGGER check_forn_prim
+BEFORE INSERT OR UPDATE ON fornece_sec 
+FOR EACH ROW EXECUTE PROCEDURE check_forn_prim_proc();
+\end{lstlisting}
+
+\bigskip
+\noindent\textbf{b) O instante mais recente de reposição tem de ser sempre anterior ou igual à data atual:}\par
+
+\noindent A restrição é assegurada por uma restrição do tipo \textit{check}, conseguida através da inserção da linha:\par
+
+\begin{lstlisting}
+CHECK (instante < CURRENT_TIMESTAMP)
+\end{lstlisting}
+
+\noindent No \textit{statement} \texttt{CREATE TABLE} da tabela \texttt{fornece\textunderscore sec}. Pode ser inserido no fim, junto das restrições de chave primária, como restrição de tabela, ou na linha de declaração do atributo texttt{instante}, depois do tipo de dados.\footnote{Esta restrição está definida no ficheiro \texttt{schema.sql}, entregue na parte 3 do projeto.}\par
+
+Alternativamente, o \textit{check} pode ser adicionado posteriormente à criação da tabela, através da linha:
+
+\begin{lstlisting}
+ALTER TABLE evento_reposicao ADD CHECK (instante < CURRENT_TIMESTAMP);
+\end{lstlisting}
+
+\section{Índices}
+\subsection{Consulta 1}
+Liste o nif e nome de todos os fornecedores primários da categoria “Frutos”.
+
+\begin{lstlisting}
+select distinct F.nif, F.nome
+from fornecedor F, produto P
+where F.nif = P.forn_primario and P.categoria = 'Frutos'
+\end{lstlisting}
+\medskip
+
+\noindent São criados dois índices (um deles automaticamente pelo Postgres), para otimizar cada uma das condições de igualdade da cláusula \textit{where}.\par
+
+Para executar \texttt{F.nif = P.forn\_primario}, que neste caso funciona como a condição de junção de um \textit{join}, uma das colunas, \texttt{fornecedor.nif} ou \texttt{produto.forn\_primario}, vai ter de ser percorrida sequencialmente. Por cada um dos elementos dessa coluna, vai ser encontrado o elemento igual na outra. Assim, a execução é otimizada se houver um índice numa destas colunas.\par
+
+É criado automaticamente pelo \textit{Postgres}, um índice primário na coluna \texttt{nif} da tabela\linebreak
+\texttt{fornecedor}, do tipo \texttt{b-tree} (\texttt{fornecedor\textunderscore pkey}). O ideal seria um índice do tipo \texttt{hash}, mas a sua criação não se justifica, tento em conta a existência do índice \texttt{b-tree}.\par
+
+\smallskip
+Para otimizar a segunda condição de igualdade da cláusula \textit{where}, \texttt{P.categoria = 'Frutos'}, é criado um índice na coluna \texttt{categoria} da tabela \texttt{produto} do tipo \texttt{hash}\linebreak
+(\texttt{prod\_categoria\_idx}).\par
+
+\bigskip
+
+\noindent Código SQL:\par
+
+\begin{lstlisting}
+CREATE INDEX prod_categoria_idx ON produto USING hash (categoria);
+-- CREATE INDEX fornecedor_pkey ON fornecedor USING hash(nif);
+--  nao e necessario; o postgres cria automaticamente um do tipo b-tree
+\end{lstlisting}
+
+\subsection{Consulta 2}
+Liste o número de fornecedores secundários de cada produto com mais de 1 fornecedor secundário.
+
+\begin{lstlisting}
+select ean, count(nif)
+from produto P, fornece_sec F
+where P.ean = F.ean
+group by P.ean
+having count(nif) > 1;
+\end{lstlisting}
+\medskip
+
+Como na consulta 1, a condição de igualdade da cláusula \textit{where}, \texttt{P.ean = F.ean}, funciona como a condição de junção de um \textit{join}. Ao executar o \textit{join}, uma das colunas \texttt{produto.ean} ou \texttt{fornecedor.ean} vai ter de ser percorrida sequencialmente, enquanto são encontrados os elementos correspondentes na outra. Esta procura pode ser otimizada utilizando um índice.\par
+
+O \textit{Postgres} cria automaticamente um índice primário na coluna \texttt{ean} da tabela \texttt{produto} do tipo \texttt{b-tree} (\texttt{produto\_pkey}), que otimiza o \textit{statement} \textit{group by}. Para o \textit{join}, o ideal seria um índice do tipo \texttt{hash}, mas a não se justifica a criação de um novo índice, dada a existência do índice \texttt{b-tree}.\par
+
+\bigskip
+\noindent Código SQL (só comentários):
+\begin{lstlisting}
+-- CREATE INDEX produto_pkey ON produto USING b-tree (ean);
+--  nao e necessario; o postgres cria automaticamente um do tipo b-tree
+\end{lstlisting}
+
+\section{Modelo Multidimensional}
+
+\begin{lstlisting}
+-- Assegura que as tabelas nao existem antes de serem criadas
+DROP TABLE IF EXISTS d_produto;
+DROP TABLE IF EXISTS d_tempo;
+DROP TABLE IF EXISTS reposicoes;
+
+SELECT DISTINCT ean AS cean,
+                categoria,
+                forn_primario AS nif_fornecedor_principal
+INTO d_produto
+FROM produto NATURAL JOIN reposicao;
+-- Usamos NATURAL JOIN para impedir que estejam presentes produtos
+--  que nao foram repostos.
+
+ALTER TABLE d_produto ADD PRIMARY KEY (cean);
+
+SELECT DISTINCT to_number(to_char(instante, 'YYYYMMDD'), '99999999') AS data_id,
+                CAST(date_part('day',   instante) AS NUMERIC(2)) AS dia,
+                CAST(date_part('month', instante) AS NUMERIC(2)) AS mes,
+                CAST(date_part('year',  instante) AS NUMERIC(4)) AS ano
+                -- Os casts sao necessarios para que os dados nao sejam
+                --  guardados em floating point.
+INTO d_tempo 
+FROM reposicao;
+-- Usamos reposicao e nao evento_reposicao para evitar que haja entradas,
+--  para as quais nao ha uma entrada de d_produto correspondente.
+
+ALTER TABLE d_tempo ADD PRIMARY KEY (data_id);
+
+-- Tabela de factos:
+SELECT DISTINCT ean AS cean,
+                to_number(to_char(instante, 'YYYYMMDD'), '99999999') AS data_id
+INTO reposicoes
+FROM produto NATURAL JOIN reposicao;
+
+ALTER TABLE reposicoes ADD PRIMARY KEY (cean, data_id);
+\end{lstlisting}
+
+\section{Data Analytics}
+
+Interrogação SQL   para   obter   o   número   de   reposições   de   produtos   do   fornecedor   com   NIF   123   455   678   para cada   categoria,   com   \textit{rollup}   por   ano   e   mês:\par
+
+\begin{lstlisting}
+SELECT categoria, NULL as ano, NULL as mes, COUNT(cean)
+FROM reposicoes NATURAL JOIN d_produto NATURAL JOIN d_tempo
+WHERE nif_fornecedor_principal = 123455678
+GROUP BY categoria
+UNION
+SELECT categoria, ano, mes, COUNT(cean)
+FROM reposicoes NATURAL JOIN d_produto NATURAL JOIN d_tempo
+WHERE nif_fornecedor_principal = 123455678
+GROUP BY categoria, mes, ano;
+\end{lstlisting}
+\end{document}
