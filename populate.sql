@@ -87,13 +87,17 @@ INSERT INTO produto VALUES
 (3496785072712, 'Maquina roupa X530-ABB',       'Maquina de lavar roupa',   224456789, '2015-10-23'),
 (3456485662912, 'Maca Royal Gala',              'Fruta',                    123455678, '2016-02-06'),
 (3456785056712, 'Pera Rocha',                   'Fruta',                    123455678, '2015-07-11'),
-(2456385062612, 'Clementina XPTO',              'Fruta',                    123455678, '2015-05-15'),
+(2456385062612, 'Clementina XPTO',              'Fruta',                    123000759, '2015-05-15'),
 (6456785069611, 'Laranja do Algarve',           'Fruta',                    123455678, '2017-01-01'),
+(6426785364611, 'Melancia'          ,           'Fruta',                    323150669, '2017-01-01'),
+(1426784067619, 'Melao',                        'Fruta',                    146456786, '2017-01-01'),
+(2456685049612, 'Cerejas',                      'Fruta',                    123365789, '2017-01-01'),
+(9456725063614, 'Castanhas',                    'Fruta',                    123455678, '2017-01-01'),
 (6987654429611, 'Escova dos dentes BShiny',     'Produto Higienico',        123365789, '2016-12-29'),
 (6087645785321, 'Bolinhas de agua 6 un.',       'Pao de trigo',             423835788, '2017-12-01'),
 (9876543247611, 'Pao de centeio XL',            'Pao de centeio',           423835788, '2015-11-30'),
 (7534579969611, 'Bimbo superfofo sem codea',    'Pao de forma',             423835788, '2017-06-23'),
-(6324797652346, 'Bolo de anos Frozen',          'Bolo de anos',             123451689, '2016-02-10');
+(6324797652346, 'Bolo de anos Frozen',          'Bolo de anos',             323150669, '2016-02-10');
 
 INSERT INTO fornece_sec VALUES
 (123365789, 3456789032312), --fornecedor04 Iogurte aromas Agros

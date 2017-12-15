@@ -164,13 +164,13 @@ END;
 $BODY$ LANGUAGE plpgsql;
 
 
-CREATE TRIGGER check_forn_sec BEFORE UPDATE ON produto
+CREATE TRIGGER check_forn_sec
+BEFORE INSERT OR UPDATE ON produto
 FOR EACH ROW EXECUTE PROCEDURE check_forn_sec_proc();
 
-CREATE TRIGGER check_forn_prim BEFORE UPDATE ON fornece_sec 
+CREATE TRIGGER check_forn_prim
+BEFORE INSERT OR UPDATE ON fornece_sec 
 FOR EACH ROW EXECUTE PROCEDURE check_forn_prim_proc();
 
-CREATE INDEX prod_forn_prim_idx ON produto     USING hash (forn_primario);
 CREATE INDEX prod_categoria_idx ON produto     USING hash (categoria);
-CREATE INDEX forn_sec_ean       ON fornece_sec USING hash (ean);
 
