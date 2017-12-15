@@ -1,6 +1,6 @@
 -- Ficheiro com intruções de criação e população do esquema em estrela
 DROP TABLE IF EXISTS d_produto;
-DROP TABLE IF EXISTS d_data;
+DROP TABLE IF EXISTS d_tempo;
 DROP TABLE IF EXISTS reposicoes;
 
 --CREATE TABLE d_produto(
@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS reposicoes;
 --);
 
 /*
-CREATE TABLE d_data(
+CREATE TABLE d_tempo(
     data_id NUMERIC(8),
     dia     NUMERIC(2),
     mes     NUMERIC(2),
@@ -34,12 +34,12 @@ SELECT DISTINCT to_number(to_char(instante, 'YYYYMMDD'), '99999999') AS data_id,
                 CAST(date_part('day',   instante) AS NUMERIC(2)) AS dia,
                 CAST(date_part('month', instante) AS NUMERIC(2)) AS mes,
                 CAST(date_part('year',  instante) AS NUMERIC(4)) AS ano
-INTO d_data 
+INTO d_tempo 
 FROM reposicao;
 -- Usamos reposicao e nao evento_reposicao para evitar que haja entradas,
 --  para as quais nao ha uma entrada de d_produto correspondente.
 
-ALTER TABLE d_data ADD PRIMARY KEY (data_id);
+ALTER TABLE d_tempo ADD PRIMARY KEY (data_id);
 
 -- Tabela de factos:
 SELECT DISTINCT ean AS cean,
@@ -54,11 +54,11 @@ ALTER TABLE reposicoes ADD PRIMARY KEY (cean, data_id);
 -- para cada categoria, com rollup por ano e mês
 
 SELECT categoria, NULL as ano, NULL as mes, COUNT(cean)
-FROM reposicoes NATURAL JOIN d_produto NATURAL JOIN d_data
+FROM reposicoes NATURAL JOIN d_produto NATURAL JOIN d_tempo
 WHERE nif_fornecedor_principal = 123455678
 GROUP BY categoria
 UNION
 SELECT categoria, ano, mes, COUNT(cean)
-FROM reposicoes NATURAL JOIN d_produto NATURAL JOIN d_data
+FROM reposicoes NATURAL JOIN d_produto NATURAL JOIN d_tempo
 WHERE nif_fornecedor_principal = 123455678
 GROUP BY categoria, mes, ano;
